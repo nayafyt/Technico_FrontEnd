@@ -1,0 +1,33 @@
+
+<div class="container">
+
+    <div class="left-container">
+        <h1>Welcome to Technico</h1>
+        <p>Connect with people and share your ideas.</p>
+      </div>
+<div class="right-container">
+<form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="new-password">
+    
+    <div class="form-control">
+      <label for="email">Email</label>
+      <input 
+      formControlName="email"
+        id="email" 
+        class="form-control" 
+        autocomplete="new-password"
+        type="email" 
+         />
+    
+        <label for="password">Password</label>
+        <input 
+      formControlName="password" 
+      id="password" 
+        autocomplete="new-password" 
+        type="password"
+        />
+      </div>
+      <button id="login-button"  type="submit">Login</button>
+
+      </form>
+    </div>
+    </div>

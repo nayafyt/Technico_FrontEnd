@@ -4,6 +4,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-admin-homepage',
+  standalone: true,
   imports: [FooterComponent, NavbarComponent],
   templateUrl: './admin-homepage.component.html',
   styleUrl: './admin-homepage.component.scss'
