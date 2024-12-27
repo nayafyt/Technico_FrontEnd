@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { AdminHomepageComponent } from "./pages/admin-homepage/admin-homepage.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [AdminHomepageComponent], //RouterOutlet
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
