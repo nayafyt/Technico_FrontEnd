@@ -44,6 +44,6 @@ export class AdminHomepageComponent implements OnInit{
     }
      ];
       this.isLoading = false; 
-    }, -10); 
+    }, 1000); 
   }
 }
