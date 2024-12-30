@@ -1,5 +1,8 @@
-  <nav class="navbar navbar-light bg-light sticky-top">
-    <span class="navbar-brand">
-      <span class="ml-2">Technico</span>
-    </span>
-  </nav>
+<nav class="navbar">
+  <span class="navbar-brand">
+    <span class="ml-2">Technico</span>
+  </span>
+  <span class="home-nav" (click)="goToHome()">Home</span>
+  <span class="repair-nav" (click)="goToRepairs()">Repairs</span>
+  <span class="property-nav" (click)="goToPropertyOwners()">Property Owners</span>
+</nav>
