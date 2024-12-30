@@ -1,0 +1,64 @@
+
+.container {
+   justify-content: space-between;
+    align-items: center;
+    display: flex;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(177, 65, 0, 0.1);
+    margin-top: 40px;
+}
+.admin-image {
+    max-width: 140px; 
+    margin-right: 90px;
+  }
+.container-repairs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; 
+    text-align: left;
+    align-items: center; 
+    gap: 20px;
+    margin-top: 50px;
+}
+.repair-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(177, 65, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 10px 0;
+}
+.repair-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+.repair-info p {
+    margin: 7px 0;
+}
+.repair-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.repair-button.in-progress {
+   background-color: #ff9800; 
+}
+.repair-button.scheduled {
+   background-color: #2196f3;
+}
+.repair-button.completed {
+   background-color: #4caf50;
+}
+.repair-button:hover {
+   opacity: 0.8;
+}
+
+  

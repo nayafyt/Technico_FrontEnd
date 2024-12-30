@@ -14,15 +14,10 @@ export class LoginComponent {
     email: new FormControl(''),
     password: new FormControl('')
   });
-  
-navigate: any;
-
 
   constructor(private router: Router){
     this.loginForm.valueChanges.subscribe((value)=> {
       console.log(value);
-
-      
     });
   }
 
