@@ -5,6 +5,7 @@ import { AdminHomepageComponent } from './pages/admin-homepage/admin-homepage.co
 import { RepairsComponent } from './pages/repairs/repairs.component';
 import { PropertyOwnersComponent } from './pages/property-owners/property-owners.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CreateRepairPageComponent } from './pages/create-repair-page/create-repair-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,8 +16,11 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: 'repairs', component: RepairsComponent },
+      { path: 'repairs', component: RepairsComponent, children: [
+        { path: 'create-repair-page', component: CreateRepairPageComponent }
+      ] },
       { path: 'property-owners', component: PropertyOwnersComponent },
+      { path: 'create-repair-page', component: CreateRepairPageComponent },
     ],
   },
   { path: '**', redirectTo: 'login' },

@@ -1,1 +1,67 @@
-<p>repairs works!</p>
+<div class="container-repairsPage">
+  <h2>Pending Repairs</h2>
+  <div class="search-section">
+    <form (ngSubmit)="searchRepairs()">
+      <label for="startDate">Start Date:</label>
+      <input
+        type="date"
+        id="startDate"
+        [(ngModel)]="searchCriteria.startDate"
+        name="startDate"
+      />
+      <!-- <label for="endDate">End Date:</label>
+        <input
+          type="date"
+          id="endDate"
+          [(ngModel)]="searchCriteria.endDate"
+          name="endDate"
+        /> -->
+      <label for="userId">User ID:</label>
+      <input
+        type="text"
+        id="userId"
+        placeholder="Search by User ID"
+        [(ngModel)]="searchCriteria.userId"
+        name="userId"
+      />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  <div
+    class="container-repairs"
+    *ngIf="filteredRepairs.length > 0; else noResults"
+  >
+    <div *ngFor="let repair of filteredRepairs" class="repair-card">
+      <div class="repair-info">
+        <h3>{{ repair.title }}</h3>
+        <p>Date: {{ repair.sceduleDate }}</p>
+        <p>Location: {{ repair.location }}</p>
+        <p>Cost: ${{ repair.cost }}</p>
+        <p>Owner: {{ repair.owner }}</p>
+      </div>
+      <div class="create-repear">
+        <a routerLink='/admin-homepage/create-repair-page' class="create-repair-button"
+          >Create Repair</a
+        >
+      </div>
+      <div class="repair-description">
+        <p>{{ repair.description }}</p>
+      </div>
+      <button
+        class="repair-button"
+        [ngClass]="{ pending: repair.status === 'pending' }"
+      >
+        {{ repair.status }}
+      </button>
+    </div>
+  </div>
+  <ng-template #noResults>
+    <p class="no-results">
+      {{
+        repairs.length > 0
+          ? "No repairs found based on your search criteria."
+          : "No repairs available."
+      }}
+    </p>
+  </ng-template>
+</div>
