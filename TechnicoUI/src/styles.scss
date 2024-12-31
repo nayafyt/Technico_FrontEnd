@@ -1,19 +1,6 @@
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
 
-html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}html, body {
+html, body {
     height: 100%;
     margin: 0;
   }
@@ -28,25 +15,22 @@ html {
     flex: 1;
   }
   
-  /* For small screens (like phones and small tablets) */
 @media (max-width: 600px) {
   .container {
-      flex-direction: column; /* Stack items vertically */
+      flex-direction: column; 
       padding: 20px;
       gap: 1rem;
   }
 }
 
-/* For medium screens (like tablets or small laptops) */
 @media (min-width: 601px) and (max-width: 1200px) {
   .container {
-      flex-direction: row; /* Keep items in a row */
+      flex-direction: row; 
       padding: 40px;
       gap: 2vw;
   }
 }
 
-/* For large screens (like desktops and large monitors) */
 @media (min-width: 1201px) {
   .container {
       max-width: 80%;
