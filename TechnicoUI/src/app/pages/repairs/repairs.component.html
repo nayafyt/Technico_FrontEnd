@@ -25,12 +25,14 @@
         name="userId"
       />
       <button type="submit">Search</button>
+        <a routerLink='/admin-homepage/create-repair-page' class="create-repair-button"
+          >Create Repair</a>
     </form>
   </div>
-  <div
+  <!-- <div
     class="container-repairs"
     *ngIf="filteredRepairs.length > 0; else noResults"
-  >
+  > -->
     <div *ngFor="let repair of filteredRepairs" class="repair-card">
       <div class="repair-info">
         <h3>{{ repair.title }}</h3>
@@ -39,11 +41,11 @@
         <p>Cost: ${{ repair.cost }}</p>
         <p>Owner: {{ repair.owner }}</p>
       </div>
-      <div class="create-repear">
+      <!-- <div class="create-repear">
         <a routerLink='/admin-homepage/create-repair-page' class="create-repair-button"
           >Create Repair</a
         >
-      </div>
+      </div> -->
       <div class="repair-description">
         <p>{{ repair.description }}</p>
       </div>
@@ -54,7 +56,7 @@
         {{ repair.status }}
       </button>
     </div>
-  </div>
+  <!-- </div>
   <ng-template #noResults>
     <p class="no-results">
       {{
@@ -63,5 +65,5 @@
           : "No repairs available."
       }}
     </p>
-  </ng-template>
+  </ng-template> -->
 </div>

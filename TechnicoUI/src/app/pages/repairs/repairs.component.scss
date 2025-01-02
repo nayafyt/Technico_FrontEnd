@@ -115,7 +115,7 @@
       color: white;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
+      // cursor: pointer;
       font-weight: bold;
       text-align: center;
 
@@ -123,34 +123,37 @@
         background-color: #6c757d;
       }
 
-      &:active {
-        transform: scale(0.95);
-      }
+      // &:active {
+      //   transform: scale(0.95);
+      // }
     }
   }
 
-  .no-results {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #888;
-  }
+  // .no-results {
+  //   text-align: center;
+  //   font-size: 1.2rem;
+  //   color: #888;
+  // }
 
   .create-repair-button {
-    display: block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #f55701;
-    color: white;
-    text-align: center;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    color: #007bff;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
     border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
     cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, color 0.2s;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
   
     &:hover {
-      background-color: #d94d00;
+      background-color: #e2e6ea;
+      color: #0056b3;
+      transform: scale(1.05);
     }
-
+  
     &:active {
       transform: scale(0.95);
     }

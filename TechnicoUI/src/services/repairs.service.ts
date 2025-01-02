@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IRepairs } from '../models/irepairs';
+import { IRepairs } from '../app/models/irepairs';
 
 @Injectable({
   providedIn: 'root',

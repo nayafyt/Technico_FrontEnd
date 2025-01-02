@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RepairsService } from '../../../services/repairs.service';
-import { IRepairs } from '../../../models/irepairs';
+import { IRepairs } from '../../models/irepairs';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

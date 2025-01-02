@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RepairsService } from '../../../services/repairs.service';
-import { IRepairs } from '../../../models/irepairs';
+import { IRepairs } from '../../models/irepairs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -27,7 +27,8 @@ export class RepairsComponent implements OnInit {
 
     this.repairsService.getRepairs().subscribe((data) => {
       this.repairs = data;
-      this.filteredRepairs = [];
+      // this.filteredRepairs = [];
+      this.filteredRepairs = [...this.repairs];
     });
   }
 
@@ -36,10 +37,10 @@ export class RepairsComponent implements OnInit {
   
     let results = [...this.repairs];
   
-    if (!startDate && !endDate && !userId) {
-      this.filteredRepairs = [];
-      return;
-    }
+    // if (!startDate && !endDate && !userId) {
+    //   this.filteredRepairs = [];
+    //   return;
+    // }
   
     if (startDate) {
       results = results.filter(

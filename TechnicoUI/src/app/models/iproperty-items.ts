@@ -1,5 +1,3 @@
-
-
 export interface IPropertyItems {
     Id: Number;
     Address: string;
