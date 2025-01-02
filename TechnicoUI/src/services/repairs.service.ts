@@ -8,7 +8,7 @@ import { IRepairs } from '../app/models/irepairs';
 export class RepairsService {
   private repairs: IRepairs[] = [
     {
-      sceduleDate: '2024-12-30',
+      date: '2024-12-30',
       repairType: 'Electrical',
       description: 'Initial Description',
       address: 'Glyfada',
@@ -16,11 +16,47 @@ export class RepairsService {
       cost: 10000,
       owner: 'John Doe',
       title: 'Glyfada',
-      location: 'Athens',
+      location: 'alimo',
       userId: '43252395',
     },
     {
-      sceduleDate: '2024-12-30',
+      date: '2024-12-30',
+      repairType: 'mechanic',
+      description: 'Initial Description',
+      address: 'Glyfada',
+      status: 'pending',
+      cost: 10000,
+      owner: 'John Doe',
+      title: 'Glyfada',
+      location: 'kaisa',
+      userId: '43252396',
+    },
+    {
+      date: '2024-12-30',
+      repairType: 'painting',
+      description: 'Initial Description',
+      address: 'Glyfada',
+      status: 'pending',
+      cost: 10000,
+      owner: 'John Doe',
+      title: 'Glyfada',
+      location: 'gpati',
+      userId: '43252396',
+    },
+    {
+      date: '2024-12-30',
+      repairType: 'constructing',
+      description: 'Initial Description',
+      address: 'Glyfada',
+      status: 'pending',
+      cost: 10000,
+      owner: 'John Doe',
+      title: 'Glyfada',
+      location: 'kallithea',
+      userId: '43252396',
+    },
+    {
+      date: '2024-12-30',
       repairType: 'Electrical',
       description: 'Initial Description',
       address: 'Glyfada',
@@ -32,7 +68,7 @@ export class RepairsService {
       userId: '43252396',
     },
     {
-      sceduleDate: '2024-12-30',
+      date: '2024-12-30',
       repairType: 'Electrical',
       description: 'Initial Description',
       address: 'Glyfada',
@@ -44,31 +80,7 @@ export class RepairsService {
       userId: '43252396',
     },
     {
-      sceduleDate: '2024-12-30',
-      repairType: 'Electrical',
-      description: 'Initial Description',
-      address: 'Glyfada',
-      status: 'pending',
-      cost: 10000,
-      owner: 'John Doe',
-      title: 'Glyfada',
-      location: 'Athens',
-      userId: '43252396',
-    },
-    {
-      sceduleDate: '2024-12-30',
-      repairType: 'Electrical',
-      description: 'Initial Description',
-      address: 'Glyfada',
-      status: 'pending',
-      cost: 10000,
-      owner: 'John Doe',
-      title: 'Glyfada',
-      location: 'Athens',
-      userId: '43252396',
-    },
-    {
-      sceduleDate: '2024-12-30',
+      date: '2024-12-30',
       repairType: 'Electrical',
       description: 'Initial Description',
       address: 'Glyfada',
@@ -85,7 +97,7 @@ export class RepairsService {
   }
 
   createRepair(repair: IRepairs): Observable<IRepairs> {
-    repair.sceduleDate = new Date().toISOString();
+    repair.date = new Date().toISOString();
     this.repairs.push(repair);
     return of(repair);
   }

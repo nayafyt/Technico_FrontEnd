@@ -9,13 +9,6 @@
         [(ngModel)]="searchCriteria.startDate"
         name="startDate"
       />
-      <!-- <label for="endDate">End Date:</label>
-        <input
-          type="date"
-          id="endDate"
-          [(ngModel)]="searchCriteria.endDate"
-          name="endDate"
-        /> -->
       <label for="userId">User ID:</label>
       <input
         type="text"
@@ -25,27 +18,21 @@
         name="userId"
       />
       <button type="submit">Search</button>
-        <a routerLink='/admin-homepage/create-repair-page' class="create-repair-button"
-          >Create Repair</a>
+      <a routerLink="/admin-homepage/create-repair-page" class="create-repair-button">
+        Create Repair
+      </a>
     </form>
   </div>
-  <!-- <div
-    class="container-repairs"
-    *ngIf="filteredRepairs.length > 0; else noResults"
-  > -->
-    <div *ngFor="let repair of filteredRepairs" class="repair-card">
+
+  <div *ngIf="paginatedRepairs.length > 0">
+    <div *ngFor="let repair of paginatedRepairs" class="repair-card">
       <div class="repair-info">
         <h3>{{ repair.title }}</h3>
-        <p>Date: {{ repair.sceduleDate }}</p>
+        <p>Date: {{ repair.date }}</p>
         <p>Location: {{ repair.location }}</p>
         <p>Cost: ${{ repair.cost }}</p>
         <p>Owner: {{ repair.owner }}</p>
       </div>
-      <!-- <div class="create-repear">
-        <a routerLink='/admin-homepage/create-repair-page' class="create-repair-button"
-          >Create Repair</a
-        >
-      </div> -->
       <div class="repair-description">
         <p>{{ repair.description }}</p>
       </div>
@@ -56,8 +43,25 @@
         {{ repair.status }}
       </button>
     </div>
-  <!-- </div>
-  <ng-template #noResults>
+
+    <div class="pagination">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+        Previous
+      </button>
+      <button
+        *ngFor="let page of totalPagesList"
+        (click)="changePage(page)"
+        [class.active]="currentPage === page"
+      >
+        {{ page }}
+      </button>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+  </div>
+
+  <!-- <ng-template #noResults>
     <p class="no-results">
       {{
         repairs.length > 0

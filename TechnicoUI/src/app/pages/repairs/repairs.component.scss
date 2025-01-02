@@ -158,4 +158,26 @@
       transform: scale(0.95);
     }
   }
+
+  .pagination button {
+    padding: 8px 12px;
+    border: 1px solid #f55701;
+    border-radius: 4px;
+    color: #f55701;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0 5px;
+  }
+  
+  .pagination button:hover,
+  .pagination button.active {
+    background-color: #f55701;
+    color: #fff;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
 }

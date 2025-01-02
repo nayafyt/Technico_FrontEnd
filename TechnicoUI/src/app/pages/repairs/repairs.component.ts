@@ -4,62 +4,89 @@ import { IRepairs } from '../../models/irepairs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { PaginationService } from '../../../services/pagination.service';
 
 @Component({
   selector: 'app-repairs',
   standalone: true,
-  imports: [FormsModule, CommonModule,RouterLink],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './repairs.component.html',
   styleUrls: ['./repairs.component.scss'],
 })
 export class RepairsComponent implements OnInit {
   repairs: IRepairs[] = [];
   filteredRepairs: IRepairs[] = [];
+  paginatedRepairs: IRepairs[] = [];
   searchCriteria = {
     startDate: '',
     endDate: '',
     userId: '',
   };
+  currentPage = 1;
+  itemsPerPage = 3;
+  totalPages = 0;
 
-  constructor(private repairsService: RepairsService) {}
+  constructor(private repairsService: RepairsService, private paginationService: PaginationService) {}
 
   ngOnInit(): void {
-
     this.repairsService.getRepairs().subscribe((data) => {
       this.repairs = data;
       // this.filteredRepairs = [];
       this.filteredRepairs = [...this.repairs];
+      this.updatePagination();
     });
   }
 
   searchRepairs(): void {
     const { startDate, endDate, userId } = this.searchCriteria;
-  
+
     let results = [...this.repairs];
-  
+
     // if (!startDate && !endDate && !userId) {
     //   this.filteredRepairs = [];
     //   return;
     // }
-  
+
     if (startDate) {
       results = results.filter(
-        (repair) => new Date(repair.sceduleDate).getTime() === new Date(startDate).getTime()
+        (repair) =>
+          new Date(repair.date).getTime() ===
+          new Date(startDate).getTime()
       );
     }
-  
+
     // if (endDate) {
     //   results = results.filter(
     //     (repair) => new Date(repair.sceduleDate).getTime() <= new Date(endDate).getTime()
     //   );
     // }
-  
+
     if (userId) {
-      results = results.filter((repair) =>
-        repair.userId === userId
-      );
+      results = results.filter((repair) => repair.userId === userId);
     }
-  
+
     this.filteredRepairs = results;
+  }
+
+  updatePagination(): void {
+    const { paginatedItems, totalPages } = this.paginationService.paginate(
+      this.filteredRepairs,
+      this.currentPage,
+      this.itemsPerPage
+    );
+    this.paginatedRepairs = paginatedItems;
+    this.totalPages = totalPages;
+  }
+
+  changePage(page: number): void {
+    if (page < 1 || page > this.totalPages) {
+      return;
+    }
+    this.currentPage = page;
+    this.updatePagination();
+  }
+
+  get totalPagesList(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 }

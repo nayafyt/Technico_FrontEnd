@@ -43,6 +43,6 @@ export class HomeComponent implements OnInit{
     }
      ];
       this.isLoading = false; 
-    }, 1000); 
+    }, 0); 
   }
 }

@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateRepairPageComponent {
   repair: IRepairs = {
-    sceduleDate: '',
+    date: '',
     repairType: '',
     description: '',
     address: '',

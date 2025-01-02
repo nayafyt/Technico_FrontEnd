@@ -1,5 +1,5 @@
 export interface IRepairs {
-    sceduleDate: string;
+    date: string;
     repairType: string;
     description: string;
     address: string;
