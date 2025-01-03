@@ -17,7 +17,7 @@ export class RepairsService {
       owner: 'John Doe',
       title: 'Glyfada',
       location: 'alimo',
-      userId: '43252395',
+      userId: '1',
     },
     {
       date: '2024-12-30',
@@ -29,7 +29,7 @@ export class RepairsService {
       owner: 'John Doe',
       title: 'Glyfada',
       location: 'kaisa',
-      userId: '43252396',
+      userId: '2',
     },
     {
       date: '2024-12-30',
@@ -41,7 +41,7 @@ export class RepairsService {
       owner: 'John Doe',
       title: 'Glyfada',
       location: 'gpati',
-      userId: '43252396',
+      userId: '3',
     },
     {
       date: '2024-12-30',
@@ -53,7 +53,7 @@ export class RepairsService {
       owner: 'John Doe',
       title: 'Glyfada',
       location: 'kallithea',
-      userId: '43252396',
+      userId: '4',
     },
     {
       date: '2024-12-30',
@@ -65,7 +65,7 @@ export class RepairsService {
       owner: 'John Doe',
       title: 'Glyfada',
       location: 'Athens',
-      userId: '43252396',
+      userId: '5',
     },
     {
       date: '2024-12-30',
@@ -77,7 +77,7 @@ export class RepairsService {
       owner: 'John Doe',
       title: 'Glyfada',
       location: 'Athens',
-      userId: '43252396',
+      userId: '6',
     },
     {
       date: '2024-12-30',
@@ -89,7 +89,7 @@ export class RepairsService {
       owner: 'John Doe',
       title: 'Glyfada',
       location: 'Athens',
-      userId: '43252396',
+      userId: '7',
     },
   ];
   getRepairs(): Observable<IRepairs[]> {

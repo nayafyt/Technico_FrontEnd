@@ -7,6 +7,7 @@ import { PropertyOwnersComponent } from './pages/property-owners/property-owners
 import { HomeComponent } from './pages/home/home.component';
 import { CreateRepairPageComponent } from './pages/create-repair-page/create-repair-page.component';
 import { OwnerPageComponent } from './pages/owner-page/owner-page.component';
+import { SearchResultsPageComponent } from './pages/search-results-page/search-results-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'repairs', component: RepairsComponent },
       { path: 'property-owners', component: PropertyOwnersComponent },
       { path: 'create-repair-page', component: CreateRepairPageComponent },
+      { path: 'search-results-page', component: SearchResultsPageComponent },
     ],
   },
   { path: '**', redirectTo: 'login' },

@@ -3,7 +3,7 @@ export interface IRepairs {
     repairType: string;
     description: string;
     address: string;
-    status: 'in progress' | 'sceduled' | 'completed' | 'pending';
+    status: 'in progress' | 'scheduled' | 'completed' | 'pending' | 'declined';
     cost: number;
     owner: string;
     imageUrl?: string;
