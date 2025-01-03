@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
-  isLoading: boolean = true;
+  isLoading  = true;
   repairs: any[] = [];
    ngOnInit(): void {
        setTimeout(() => {
@@ -43,6 +43,6 @@ export class HomeComponent implements OnInit{
     }
      ];
       this.isLoading = false; 
-    }, 0); 
+    }, 1000); 
   }
 }

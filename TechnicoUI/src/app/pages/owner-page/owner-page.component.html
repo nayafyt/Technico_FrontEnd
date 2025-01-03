@@ -1,1 +1,19 @@
-<p>owner-page works!</p>
+<div class="Container-wrapped">
+  <h2>Owner Management</h2>
+  <a routerLink="/admin-homepage/create-owner-page" class="create-owner-button">
+    Create Owner
+  </a>
+</div>
+<div class="owner-container">
+<div *ngFor="let propertyOwner of propertyowner" class="owner-card">
+  <div class="owner-info">
+    <h3>Vat: {{ propertyOwner.vat }}</h3>
+    <p>Name: {{ propertyOwner.name }}</p>
+    <p>Surname: {{ propertyOwner.surname }}</p>
+    <p>Address: {{ propertyOwner.address }}</p>
+    <p>Phone Number: {{ propertyOwner.phoneNumber }}</p>
+    <p>Email: {{ propertyOwner.email }}</p>
+  </div>
+  <a routerLink="/admin-homepage/edit-owner-page" class="editbtn">Edit</a>
+</div>
+</div>
