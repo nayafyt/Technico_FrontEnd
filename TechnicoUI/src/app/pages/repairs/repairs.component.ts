@@ -3,7 +3,7 @@ import { RepairsService } from '../../../services/repairs.service';
 import { IRepairs } from '../../models/irepairs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PaginationService } from '../../../services/pagination.service';
 
 @Component({
@@ -26,12 +26,15 @@ export class RepairsComponent implements OnInit {
   itemsPerPage = 3;
   totalPages = 0;
 
-  constructor(private repairsService: RepairsService, private paginationService: PaginationService) {}
+  constructor(
+    private repairsService: RepairsService,
+    private paginationService: PaginationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.repairsService.getRepairs().subscribe((data) => {
       this.repairs = data;
-      // this.filteredRepairs = [];
       this.filteredRepairs = [...this.repairs];
       this.updatePagination();
     });
@@ -42,16 +45,10 @@ export class RepairsComponent implements OnInit {
 
     let results = [...this.repairs];
 
-    // if (!startDate && !endDate && !userId) {
-    //   this.filteredRepairs = [];
-    //   return;
-    // }
-
     if (startDate) {
       results = results.filter(
         (repair) =>
-          new Date(repair.date).getTime() ===
-          new Date(startDate).getTime()
+          new Date(repair.date).getTime() === new Date(startDate).getTime()
       );
     }
 
@@ -66,6 +63,10 @@ export class RepairsComponent implements OnInit {
     }
 
     this.filteredRepairs = results;
+
+    this.router.navigate(['/admin-homepage/search-results-page'], {
+      queryParams: { startDate, userId },
+    });
   }
 
   updatePagination(): void {
@@ -88,5 +89,8 @@ export class RepairsComponent implements OnInit {
 
   get totalPagesList(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+  updateRepairStatus(repair: any, status: string) {
+    repair.status = status;
   }
 }

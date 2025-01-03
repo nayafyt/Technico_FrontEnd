@@ -18,7 +18,10 @@
         name="userId"
       />
       <button type="submit">Search</button>
-      <a routerLink="/admin-homepage/create-repair-page" class="create-repair-button">
+      <a
+        routerLink="/admin-homepage/create-repair-page"
+        class="create-repair-button"
+      >
         Create Repair
       </a>
     </form>
@@ -36,16 +39,41 @@
       <div class="repair-description">
         <p>{{ repair.description }}</p>
       </div>
-      <button
+      <button class="accept-button"
+        *ngIf="repair.status === 'pending'"
         class="repair-button"
-        [ngClass]="{ pending: repair.status === 'pending' }"
+        (click)="updateRepairStatus(repair, 'scheduled')"
+      >
+        Accept
+      </button>
+      <button class="decline-button"
+        *ngIf="repair.status === 'pending'"
+        class="repair-button"
+        (click)="updateRepairStatus(repair, 'declined')"
+      >
+        Decline
+      </button>
+      <button
+        *ngIf="repair.status === 'scheduled'"
+        class="repair-button"
+        [ngClass]="{ scheduled: repair.status === 'scheduled' }"
+      >
+        {{ repair.status }}
+      </button>
+      <button
+        *ngIf="repair.status === 'declined'"
+        class="repair-button"
+        [ngClass]="{ declined: repair.status === 'declined' }"
       >
         {{ repair.status }}
       </button>
     </div>
 
     <div class="pagination">
-      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+      <button
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
         Previous
       </button>
       <button
@@ -55,19 +83,12 @@
       >
         {{ page }}
       </button>
-      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+      <button
+        (click)="changePage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
         Next
       </button>
     </div>
   </div>
-
-  <!-- <ng-template #noResults>
-    <p class="no-results">
-      {{
-        repairs.length > 0
-          ? "No repairs found based on your search criteria."
-          : "No repairs available."
-      }}
-    </p>
-  </ng-template> -->
 </div>

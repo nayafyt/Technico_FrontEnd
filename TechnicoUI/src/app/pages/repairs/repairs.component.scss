@@ -111,21 +111,28 @@
     }
 
     .repair-button {
-      padding: 10px 15px;
-      color: white;
+      padding: 10px 20px;
+      margin: 5px;
       border: none;
       border-radius: 5px;
-      // cursor: pointer;
-      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      font-size: 16px;
       text-align: center;
-
-      &.pending {
-        background-color: #6c757d;
+      background-color: lightgray;
+    
+      &:hover {
+        background-color: #555555;
       }
 
-      // &:active {
-      //   transform: scale(0.95);
-      // }
+      &.scheduled {
+        background-color: #2196f3;
+      }
+    
+      &.declined {
+        background-color: #dc3545;
+      }
     }
   }
 
