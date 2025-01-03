@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-edit-owner-page',
   standalone: true,
-  imports: [FormsModule],  // Import FormsModule for ngModel binding
+  imports: [FormsModule],  
   templateUrl: './edit-owner-page.component.html',
   styleUrls: ['./edit-owner-page.component.scss']
 })
@@ -37,7 +37,7 @@ export class EditOwnerPageComponent implements OnInit {
         this.loadPropertyOwner(vat);
         this.isEditing = true;
       } else {
-        this.isEditing = false; 
+        this.isEditing = false;
       }
     });
   }
@@ -47,7 +47,7 @@ export class EditOwnerPageComponent implements OnInit {
       (owners) => {
         const owner = owners.find((o) => o.vat === vat);
         if (owner) {
-          this.propertyOwners = { ...owner }; // Pre-fill the form with the existing data
+          this.propertyOwners = { ...owner }; 
         }
       },
       (error) => {

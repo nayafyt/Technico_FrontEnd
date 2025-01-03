@@ -18,36 +18,25 @@ export class PropertyOwnerService {
       typeOfUser: 'User',
     },
   ];
+  constructor() {}
 
-  createPropertyOwner(propertyOwner: IPropertyOwner): Observable<IPropertyOwner> {
-    this.propertyOwners.push(propertyOwner);  // Adds new property owner to the array
-    return of(propertyOwner);  // Returns the created property owner as an Observable
+  // Μέθοδος για να πάρουμε όλους τους ιδιοκτήτες
+  getPropertyOwners(): Observable<any[]> {
+    return of(this.propertyOwners); // Επιστρέφουμε την λίστα των ιδιοκτητών
   }
 
-  getPropertyOwners(): Observable<IPropertyOwner[]> {
-    return of(this.propertyOwners);  // Returns all property owners
+  // Μέθοδος για να προσθέσουμε έναν νέο ιδιοκτήτη
+  createPropertyOwner(owner: any): Observable<any> {
+    this.propertyOwners.push(owner); // Προσθήκη του νέου ιδιοκτήτη
+    return of(owner); // Επιστρέφουμε τον νέο ιδιοκτήτη
   }
 
-  // Method to update an existing property owner
-  updatePropertyOwner(updatedOwner: IPropertyOwner): Observable<IPropertyOwner> {
-    const index = this.propertyOwners.findIndex(
-      (owner) => owner.vat === updatedOwner.vat
-    );
-    if (index > -1) {
-      this.propertyOwners[index] = updatedOwner;
-    }
-    return of(updatedOwner);
-  }
-
-  // Method to delete a property owner
-  deletePropertyOwner(vat: string): Observable<void> {
-    const index = this.propertyOwners.findIndex(owner => owner.vat === vat);
+  // Μέθοδος για να ενημερώσουμε έναν ιδιοκτήτη
+  updatePropertyOwner(owner: any): Observable<any> {
+    const index = this.propertyOwners.findIndex(o => o.vat === owner.vat);
     if (index !== -1) {
-      this.propertyOwners.splice(index, 1);
-      return of(undefined);
-    } else {
-      throw new Error('Property owner not found');
+      this.propertyOwners[index] = owner; // Ενημερώνουμε τον ιδιοκτήτη
     }
+    return of(owner);
   }
-  
 }

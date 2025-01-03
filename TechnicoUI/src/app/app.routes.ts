@@ -26,7 +26,7 @@ export const routes: Routes = [
       { path: 'search-results-page', component: SearchResultsPageComponent },
       { path: 'owner-management', component: OwnerPageComponent },
       { path: 'create-owner-page', component: CreateOwnerComponent  },
-      { path: 'edit-owner-page', component: EditOwnerPageComponent},
+      { path: 'edit-owner-page/:vat', component: EditOwnerPageComponent }, 
     ],
   },
   { path: '**', redirectTo: 'login' },
