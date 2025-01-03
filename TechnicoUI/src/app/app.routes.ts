@@ -25,7 +25,7 @@ export const routes: Routes = [
       { path: 'create-repair-page', component: CreateRepairPageComponent },
       { path: 'owner-management', component: OwnerPageComponent },
       { path: 'create-owner-page', component: CreateOwnerComponent  },
-      { path: 'edit-owner-page', component: EditOwnerPageComponent},
+      { path: 'edit-owner-page/:vat', component: EditOwnerPageComponent }, 
     ],
   },
 
