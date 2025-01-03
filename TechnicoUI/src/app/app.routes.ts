@@ -7,11 +7,13 @@ import { PropertyOwnersComponent } from './pages/property-owners/property-owners
 import { HomeComponent } from './pages/home/home.component';
 import { CreateRepairPageComponent } from './pages/create-repair-page/create-repair-page.component';
 import { OwnerPageComponent } from './pages/owner-page/owner-page.component';
+import { CreateOwnerComponent } from './pages/create-owner/create-owner.component';
+import { EditOwnerPageComponent } from './pages/edit-owner-page/edit-owner-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'owner-management', component: OwnerPageComponent },
+  
   {
     path: 'admin-homepage',
     component: AdminHomepageComponent,
@@ -21,8 +23,16 @@ export const routes: Routes = [
       { path: 'repairs', component: RepairsComponent },
       { path: 'property-owners', component: PropertyOwnersComponent },
       { path: 'create-repair-page', component: CreateRepairPageComponent },
+      { path: 'owner-management', component: OwnerPageComponent },
+      { path: 'create-owner-page', component: CreateOwnerComponent  },
+      { path: 'edit-owner-page', component: EditOwnerPageComponent},
     ],
   },
+
+
+
+
+
   { path: '**', redirectTo: 'login' },
 ];
 export class AppRoutingModule { }
