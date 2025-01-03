@@ -1,0 +1,48 @@
+<div class="container-repairsPage">
+  <h2>Search Results</h2>
+  <div class="noRepairs" *ngIf="!isLoading && filteredRepairs.length === 0">
+    <p>No repairs found matching the criteria.</p>
+  </div>
+  <div *ngIf="!isLoading && paginatedRepairs.length > 0">
+    <div *ngFor="let repair of paginatedRepairs" class="repair-item">
+      <div class="repair-info">
+        <h3>{{ repair.title }}</h3>
+        <p>Date: {{ repair.date }}</p>
+        <p>Location: {{ repair.location }}</p>
+        <p>Cost: ${{ repair.cost }}</p>
+        <p>Owner: {{ repair.owner }}</p>
+      </div>
+      <div class="repair-description">
+        <p>{{ repair.description }}</p>
+      </div>
+      <button
+        *ngIf="repair.status === 'scheduled'"
+        class="repair-button"
+        [ngClass]="{ scheduled: repair.status === 'scheduled' }"
+      >
+        {{ repair.status }}
+      </button>
+    </div>
+    <div class="pagination">
+      <button
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
+        Previous
+      </button>
+      <button
+        *ngFor="let page of totalPagesList"
+        (click)="changePage(page)"
+        [class.active]="currentPage === page"
+      >
+        {{ page }}
+      </button>
+      <button
+        (click)="changePage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
