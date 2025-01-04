@@ -10,12 +10,9 @@
     <img src="assets/admin.png" class="admin-image" alt="Admin Image" />
   </div>
 </div>
- <div *ngIf="isLoading" class="loading-indicator">
-  <p>Loading Repairs..</p>
-</div> 
-<div class="container-repairs" *ngIf="!isLoading">
+<div class="container-repairs">
   <h2>Ongoing Repairs</h2>
-  <div *ngFor="let repair of repairs" class="repair-card">
+  <div *ngFor="let repair of paginatedRepairs" class="repair-card">
     <div class="repair-info">
       <h3>{{ repair.title }}</h3>
       <p>Date: {{ repair.date }}</p>
@@ -29,12 +26,34 @@
     <button
       class="repair-button"
       [ngClass]="{
-        'in-progress': repair.status === 'In Progress',
-        scheduled: repair.status === 'Scheduled',
-        completed: repair.status === 'Completed'
+        'in-progress': repair.status === 'in progress',
+        scheduled: repair.status === 'scheduled',
+        completed: repair.status === 'completed'
       }"
     >
       {{ repair.status }}
     </button>
   </div>
+  <div class="pagination">
+    <button
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <button
+      *ngFor="let page of totalPagesList"
+      (click)="changePage(page)"
+      [class.active]="currentPage === page"
+    >
+      {{ page }}
+    </button>
+    <button
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
+  </div>
 </div>
+
