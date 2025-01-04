@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { IPropertyOwner } from '../app/models/iproperty-owner';
 
 @Injectable({
@@ -19,24 +19,28 @@ export class PropertyOwnerService {
     },
   ];
   constructor() {}
-
-  // Μέθοδος για να πάρουμε όλους τους ιδιοκτήτες
   getPropertyOwners(): Observable<any[]> {
-    return of(this.propertyOwners); // Επιστρέφουμε την λίστα των ιδιοκτητών
+    return of(this.propertyOwners); 
   }
-
-  // Μέθοδος για να προσθέσουμε έναν νέο ιδιοκτήτη
   createPropertyOwner(owner: any): Observable<any> {
-    this.propertyOwners.push(owner); // Προσθήκη του νέου ιδιοκτήτη
-    return of(owner); // Επιστρέφουμε τον νέο ιδιοκτήτη
+    this.propertyOwners.push(owner); 
+    return of(owner); 
   }
-
-  // Μέθοδος για να ενημερώσουμε έναν ιδιοκτήτη
   updatePropertyOwner(owner: any): Observable<any> {
     const index = this.propertyOwners.findIndex(o => o.vat === owner.vat);
     if (index !== -1) {
-      this.propertyOwners[index] = owner; // Ενημερώνουμε τον ιδιοκτήτη
+      this.propertyOwners[index] = owner; 
     }
     return of(owner);
+  }
+  deleteOwner(vat:string): Observable <any> {
+    const index=this.propertyOwners.findIndex((owner)=> owner.vat===vat);
+    if(index!==1){
+      this.propertyOwners.splice(index,1);
+      return of({message:'Property Owner deleted sucessfully'});
+    }
+    else{
+      return throwError(()=> new Error('Property owner not found'));
+    }
   }
 }

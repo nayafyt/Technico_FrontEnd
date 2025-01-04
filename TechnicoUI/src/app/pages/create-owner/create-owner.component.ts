@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-owner',
+  standalone:true,
   imports: [FormsModule, CommonModule],
   templateUrl: './create-owner.component.html',
   styleUrls: ['./create-owner.component.scss'] // Corrected from 'styleUrl' to 'styleUrls'

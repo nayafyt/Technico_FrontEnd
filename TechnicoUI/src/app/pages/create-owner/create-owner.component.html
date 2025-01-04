@@ -1,25 +1,28 @@
 <div class="container-create-owner">
-    <h2>Create Owner</h2>
-  
-    <form (ngSubmit)="onSubmit()" #propertyOwnersForm="ngForm">
-      <div class="form-group">
-        <label for="vat">Vat Number</label>
-        <input
-          type="text"
-          id="vatNumber"
-          [(ngModel)]="propertyOwners.vat"
-          name="vatNumber"
-          required
-          #VatNumber="ngModel"
-        />
-        <div *ngIf="VatNumber.invalid && VatNumber.touched" class="error">
-          owner vat is required.
-        </div>
+  <h2>Create Owner</h2>
+
+  <form (ngSubmit)="onSubmit()" #propertyOwnersForm="ngForm">
+    <div class="form-group">
+      <label for="vat">VAT Number</label>
+      <input
+        type="text"
+        id="vat"
+        [(ngModel)]="propertyOwners.vat"
+        name="vat"
+        required
+        pattern="[0-9A-Za-z]{1,10}" 
+        #vat="ngModel"
+      />
+      <div *ngIf="vat.invalid && vat.touched" class="error">
+        <div *ngIf="vat.errors?.['required']">VAT Number is required.</div>
+        <div *ngIf="vat.errors?.['pattern']">Invalid VAT Number format.</div>
       </div>
-      <div class="form-group">
+    </div>
+
+    <div class="form-group">
       <label for="name">Name</label>
       <input
-        type="name"
+        type="text"
         id="name"
         [(ngModel)]="propertyOwners.name"
         name="name"
@@ -29,91 +32,104 @@
       <div *ngIf="name.invalid && name.touched" class="error">
         Name is required.
       </div>
-      <div class="form-group">
-        <label for="surname">Surname</label>
-        <input
-          type="surname"
-          id="surname"
-          [(ngModel)]="propertyOwners.surname"
-          name="surname"
-          required
-          #surname="ngModel"
-        />
-        <div *ngIf="surname.invalid && surname.touched" class="error">
-          Surname is required.
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="surname">Surname</label>
+      <input
+        type="text"
+        id="surname"
+        [(ngModel)]="propertyOwners.surname"
+        name="surname"
+        required
+        #surname="ngModel"
+      />
+      <div *ngIf="surname.invalid && surname.touched" class="error">
+        Surname is required.
       </div>
-      <div class="form-group">
-        <label for="address">Address</label>
-        <input
-          type="text"
-          id="address"
-          [(ngModel)]="propertyOwners.address"
-          name="address"
-          required
-          #address="ngModel"
-        />
-        <div *ngIf="address.invalid && address.touched" class="error">
-          Address is required.
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input
+        type="text"
+        id="address"
+        [(ngModel)]="propertyOwners.address"
+        name="address"
+        required
+        #address="ngModel"
+      />
+      <div *ngIf="address.invalid && address.touched" class="error">
+        Address is required.
       </div>
-      <div class="form-group">
-        <label for="phoneNumber">Phone Number</label>
-        <input
-          type="text"
-          id="phoneNumber"
-          [(ngModel)]="propertyOwners.phoneNumber"
-          name="phoneNumber"
-          required
-          #phoneNumber="ngModel"
-        />
-        <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="error">
-          Phone Number is required.
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input
+        type="text"
+        pattern="[0-9]{10}"
+        id="phoneNumber"
+        [(ngModel)]="propertyOwners.phoneNumber"
+        name="phoneNumber"
+        required
+        #phoneNumber="ngModel"
+      />
+      <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="error">
+        Phone Number is required.
       </div>
-      <div class="form-group">
-        <label for="Email">Email</label>
-        <input
-          type="text"
-          id="email"
-          [(ngModel)]="propertyOwners.email"
-          name="email"
-          required
-          #email="ngModel"
-        />
-        <div *ngIf="email.invalid && email.touched" class="error">
-         Email is required.
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="propertyOwners.email"
+        name="email"
+        required
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        #email="ngModel"
+      />
+      <div *ngIf="email.invalid && email.touched" class="error">
+        <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+        
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="text"
-          id="password"
-          [(ngModel)]="propertyOwners.password"
-          name="password"
-          required
-          #password="ngModel"
-        />
-        <div *ngIf="password.invalid && password.touched" class="error">
-         Password is required.
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="propertyOwners.password"
+        name="password"
+        required
+        #password="ngModel"
+        autocomplete="off"
+      />
+      <div *ngIf="password.invalid && password.touched" class="error">
+        Password is required.
       </div>
-      <div class="form-group">
-        <label for="typeOfUser">Type of User</label>
-        <input
-          type="text"
-          id="typeOfUser"
-          [(ngModel)]="propertyOwners.typeOfUser"
-          name="typeOfUser"
-          required
-          #typeOfUser="ngModel"
-        />
-        <div *ngIf="typeOfUser.invalid && typeOfUser.touched" class="error">
-         Type of user is required.
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="typeOfUser">Type of User</label>
+      <input
+        type="text"
+        id="typeOfUser"
+        [(ngModel)]="propertyOwners.typeOfUser"
+        name="typeOfUser"
+        required
+        #typeOfUser="ngModel"
+        autocomplete="off"
+      />
+      <div *ngIf="typeOfUser.invalid && typeOfUser.touched" class="error">
+        Type of user is required.
       </div>
-  </div>
-      <button type="submit" [disabled]="propertyOwnersForm.invalid">Submit</button>
-    </form>
-  </div>
+    </div>
+
+    <button type="submit" [disabled]="propertyOwnersForm.invalid">Submit</button>
+  </form>
+</div>
