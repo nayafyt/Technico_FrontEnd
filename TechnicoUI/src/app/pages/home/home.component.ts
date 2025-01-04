@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IRepairs } from '../../models/irepairs';
-import { RepairsService } from '../../../services/repairs.service';
 import { PaginationService } from '../../../services/pagination.service';
 import { IRepairsOngoing } from '../../models/irepairsOngoing';
 import { RepairsOngoingService } from '../../../services/repairs-ongoing.service';
@@ -29,10 +27,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.repairsOngoing.getRepairs().subscribe((data) => {
-      console.log('Fetched repairs:', data);
       this.repairs = data;
       this.filteredRepairs = [...this.repairs];
-      console.log(1111, this.filteredRepairs);
       this.updatePagination();
     });
   }
@@ -43,8 +39,6 @@ export class HomeComponent implements OnInit {
       this.currentPage,
       this.itemsPerPage
     );
-    console.log('Paginated items:', paginatedItems);
-    console.log('Total pages:', totalPages);
     this.paginatedRepairs = paginatedItems;
     this.totalPages = totalPages;
   }
