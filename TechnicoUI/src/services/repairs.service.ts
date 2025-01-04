@@ -72,7 +72,7 @@ export class RepairsService {
       repairType: 'Electrical',
       description: 'Initial Description',
       address: 'Glyfada',
-      status: 'sceduled',
+      status: 'scheduled',
       cost: 10000,
       owner: 'John Doe',
       title: 'Glyfada',
