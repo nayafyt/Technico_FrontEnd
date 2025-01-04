@@ -1,0 +1,120 @@
+.container-searchPage {
+    padding: 2rem;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  
+    h2 {
+      text-align: center;
+      color: #f55701;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .search-section {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+  
+      form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+  
+        label {
+          font-weight: bold;
+          font-size: 1rem;
+        }
+  
+        input {
+          padding: 0.5rem;
+          font-size: 1rem;
+          border: 1px solid #dee2e6;
+          border-radius: 4px;
+          transition: box-shadow 0.2s;
+  
+          &:focus {
+            outline: none;
+            box-shadow: 0 0 5px #f55701;
+            border-color: #f55701;
+          }
+        }
+  
+        button {
+          padding: 0.5rem 1.5rem;
+          font-size: 1rem;
+          color: #fff;
+          background-color: #f55701;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: transform 0.2s, background-color 0.2s;
+  
+          &:hover {
+            background-color: #d94d00;
+            transform: scale(1.05);
+          }
+  
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+      }
+    }
+    .noRepairs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 3rem;
+        p {
+            font-size: 1.2em;
+            color: #999;
+        }
+    }
+}
+
+.owner-container{
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin: 12px 0; 
+  }
+
+  .outer-owner-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .owner-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7f7f7;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(177, 65, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 10px 0;
+  }
+  .owner-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-right: 20px; 
+  }
+  .owner-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .owner-info p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+  }
