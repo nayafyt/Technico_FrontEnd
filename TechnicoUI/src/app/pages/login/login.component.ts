@@ -33,12 +33,13 @@ export class LoginComponent {
       this.http.post('http://localhost:5001/users', { email, password }).subscribe({
         next: (response) => {
           console.log('Login successful:', response);
-          this.router.navigate(['/admin-homepage']);
+          // this.router.navigate(['/admin-homepage']);
         },
         error: (err) => {
           console.error('Login failed:', err);
         }
       })
+      this.router.navigate(['/admin-homepage']);
     }
   }
 }
