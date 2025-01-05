@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": "bfde",
+      "email": "a@a"
+    },
+    {
+      "id": "867d",
+      "email": "a@a"
+    },
+    {
+      "id": "872f",
+      "token": "mocked-token-12345",
+      "newPassword": "aggelos11"
+    },
+    {
+      "id": "3abd",
+      "email": "a@a"
+    },
+    {
+      "id": "50af",
+      "email": "a@a"
+    },
+    {
+      "id": "2231",
+      "email": "a@a",
+      "password": "sbnvjkldfebleirbv"
+    }
+  ]
+}

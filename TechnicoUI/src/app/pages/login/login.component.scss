@@ -48,3 +48,26 @@
     font-size: 16px; 
     font-weight: bold; 
   }
+
+      .link-container {
+      margin-top: 1rem;
+      text-align: center;
+
+      p {
+        margin: 0.5rem 0;
+        font-size: 0.9rem;
+        color: #555;
+
+        .link {
+          color: #f55701;
+          font-weight: bold;
+          text-decoration: none;
+          transition: color 0.3s ease;
+          cursor: pointer;
+
+          &:hover {
+            color: #cf4901;
+          }
+        }
+      }
+    }
