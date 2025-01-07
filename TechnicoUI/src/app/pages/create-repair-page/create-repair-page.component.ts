@@ -18,7 +18,7 @@ export class CreateRepairPageComponent {
     repairType: '',
     description: '',
     address: '',
-    status: 'pending',
+    status: 'in progress',
     cost: 0,
     owner: '',
     title: '',
@@ -33,9 +33,6 @@ export class CreateRepairPageComponent {
       (newRepair) => {
         console.log('Repair created:', newRepair);
         this.router.navigate(['/admin-homepage/repairs']);
-      },
-      (error) => {
-        console.error('Error creating repair:', error);
       }
     );
   }

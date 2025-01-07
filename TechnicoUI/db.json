@@ -1,30 +1,65 @@
 {
-  "users": [
+  "repairs": [
     {
-      "id": "bfde",
-      "email": "a@a"
+      "date": "2025-01-01",
+      "repairType": "Electrical",
+      "description": "Initial Description",
+      "address": "Glyfada",
+      "status": "pending",
+      "cost": "10000",
+      "owner": "John Doe",
+      "title": "Glyfada",
+      "location": "alimo",
+      "userId": "1"
     },
     {
-      "id": "867d",
-      "email": "a@a"
+      "date": "2025-01-02",
+      "repairType": "Electrical",
+      "description": "Initial Description",
+      "address": "Glyfada",
+      "status": "in progress",
+      "cost": "10000",
+      "owner": "John Doe",
+      "title": "Glyfada",
+      "location": "alimo",
+      "userId": "2"
     },
     {
-      "id": "872f",
-      "token": "mocked-token-12345",
-      "newPassword": "aggelos11"
+      "date": "2025-01-03",
+      "repairType": "Electrical",
+      "description": "Initial Description",
+      "address": "Glyfada",
+      "status": "pending",
+      "cost": "10000",
+      "owner": "John Doe",
+      "title": "Glyfada",
+      "location": "alimo",
+      "userId": "3"
     },
     {
-      "id": "3abd",
-      "email": "a@a"
+      "date": "2025-01-04",
+      "repairType": "Electrical",
+      "description": "Initial Description",
+      "address": "Glyfada",
+      "status": "pending",
+      "cost": "10000",
+      "owner": "John Doe",
+      "title": "Glyfada",
+      "location": "alimo",
+      "userId": "4"
     },
     {
-      "id": "50af",
-      "email": "a@a"
-    },
-    {
-      "id": "2231",
-      "email": "a@a",
-      "password": "sbnvjkldfebleirbv"
+      "id": "cc4e",
+      "date": "2025-01-07",
+      "repairType": "sdkgjerth",
+      "description": "sfbkoxfb",
+      "address": "bzmdlknofr",
+      "status": "in progress",
+      "cost": 0,
+      "owner": "",
+      "title": "",
+      "location": "",
+      "userId": "gbxkfnso"
     }
   ]
 }

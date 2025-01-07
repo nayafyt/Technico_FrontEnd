@@ -42,7 +42,7 @@
       <button class="accept-button"
         *ngIf="repair.status === 'pending'"
         class="repair-button"
-        (click)="updateRepairStatus(repair, 'scheduled')"
+        (click)="updateRepairStatus(repair, 'in progress')"
       >
         Accept
       </button>
@@ -54,9 +54,9 @@
         Decline
       </button>
       <button
-        *ngIf="repair.status === 'scheduled'"
+        *ngIf="repair.status === 'in progress'"
         class="repair-button"
-        [ngClass]="{ scheduled: repair.status === 'scheduled' }"
+        [ngClass]="{ scheduled: repair.status === 'in progress' }"
       >
         {{ repair.status }}
       </button>

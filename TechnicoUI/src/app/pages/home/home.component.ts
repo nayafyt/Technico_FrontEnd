@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PaginationService } from '../../../services/pagination.service';
-import { IRepairsOngoing } from '../../models/irepairsOngoing';
-import { RepairsOngoingService } from '../../../services/repairs-ongoing.service';
+import { IRepairs } from '../../models/irepairs';
+import { RepairsService } from '../../../services/repairs.service';
 
 @Component({
   selector: 'app-home',
@@ -12,23 +12,26 @@ import { RepairsOngoingService } from '../../../services/repairs-ongoing.service
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  repairs: IRepairsOngoing[] = [];
-  filteredRepairs: IRepairsOngoing[] = [];
-  paginatedRepairs: IRepairsOngoing[] = [];
+  repairs: IRepairs[] = [];
+  filteredRepairs: IRepairs[] = [];
+  paginatedRepairs: IRepairs[] = [];
 
   currentPage = 1;
   itemsPerPage = 3;
   totalPages = 0;
 
   constructor(
-    private repairsOngoing: RepairsOngoingService,
+    private repairsService: RepairsService,
     private paginationService: PaginationService
   ) {}
 
   ngOnInit(): void {
-    this.repairsOngoing.getRepairs().subscribe((data) => {
+    this.repairsService.getRepairs().subscribe((data) => {
+      console.log(1111,data);
       this.repairs = data;
+      console.log(22222,this.repairs)
       this.filteredRepairs = [...this.repairs];
+      console.log(33333, this.filteredRepairs)
       this.updatePagination();
     });
   }

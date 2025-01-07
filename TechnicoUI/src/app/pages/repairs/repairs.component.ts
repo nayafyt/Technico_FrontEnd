@@ -92,5 +92,9 @@ export class RepairsComponent implements OnInit {
   }
   updateRepairStatus(repair: any, status: string) {
     repair.status = status;
+
+    this.repairsService.updateRepairStatus(repair).subscribe((updatedRepair) => {
+      console.log('Repair status updated:', updatedRepair);
+    })
   }
 }

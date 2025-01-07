@@ -26,9 +26,7 @@
     <button
       class="repair-button"
       [ngClass]="{
-        'in-progress': repair.status === 'in progress',
-        scheduled: repair.status === 'scheduled',
-        completed: repair.status === 'completed'
+        'in-progress': repair.status === 'in progress'
       }"
     >
       {{ repair.status }}

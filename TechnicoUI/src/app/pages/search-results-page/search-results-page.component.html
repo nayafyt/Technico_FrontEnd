@@ -16,9 +16,9 @@
         <p>{{ repair.description }}</p>
       </div>
       <button
-        *ngIf="repair.status === 'scheduled'"
+        *ngIf="repair.status === 'in progress'"
         class="repair-button"
-        [ngClass]="{ scheduled: repair.status === 'scheduled' }"
+        [ngClass]="{ scheduled: repair.status === 'in progress' }"
       >
         {{ repair.status }}
       </button>
