@@ -22,19 +22,8 @@
       "owner": "John Doe",
       "title": "Glyfada",
       "location": "alimo",
-      "userId": "2"
-    },
-    {
-      "date": "2025-01-03",
-      "repairType": "Electrical",
-      "description": "Initial Description",
-      "address": "Glyfada",
-      "status": "pending",
-      "cost": "10000",
-      "owner": "John Doe",
-      "title": "Glyfada",
-      "location": "alimo",
-      "userId": "3"
+      "userId": "2",
+      "id": "04c2"
     },
     {
       "date": "2025-01-04",
@@ -46,20 +35,8 @@
       "owner": "John Doe",
       "title": "Glyfada",
       "location": "alimo",
-      "userId": "4"
-    },
-    {
-      "id": "cc4e",
-      "date": "2025-01-07",
-      "repairType": "sdkgjerth",
-      "description": "sfbkoxfb",
-      "address": "bzmdlknofr",
-      "status": "in progress",
-      "cost": 0,
-      "owner": "",
-      "title": "",
-      "location": "",
-      "userId": "gbxkfnso"
+      "userId": "3",
+      "id": "9597"
     }
   ]
 }

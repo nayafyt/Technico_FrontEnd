@@ -26,12 +26,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.repairsService.getRepairs().subscribe((data) => {
-      console.log(1111,data);
-      this.repairs = data;
-      console.log(22222,this.repairs)
+    this.repairsService.getRepairs().subscribe((data: IRepairs[]) => {
+      const filteredData = data.filter(item => item.status === 'in progress');
+      this.repairs = filteredData;
       this.filteredRepairs = [...this.repairs];
-      console.log(33333, this.filteredRepairs)
       this.updatePagination();
     });
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { IRepairs } from '../app/models/irepairs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class RepairsService {
   constructor(private http: HttpClient) {}
 
   getRepairs(): Observable<IRepairs[]> {
-    return this.http.get<IRepairs[]>(this.apiUrl1);
+    return this.http.get(this.apiUrl1).pipe(map((response: any) =>response))
   }
 
   createRepair(repair: IRepairs): Observable<IRepairs> {
@@ -23,7 +23,8 @@ export class RepairsService {
   }
 
   updateRepairStatus(repair: IRepairs): Observable<IRepairs> {
-    const url = `${this.apiUrl1}/${repair.userId}`;
+    // let httpParams = new HttpParams().set('page', page)
+    const url = `${this.apiUrl1}`;
     return this.http.put<IRepairs>(url, {status: repair.status})
   }
 }
