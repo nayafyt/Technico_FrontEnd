@@ -1,43 +1,43 @@
 <div class="container-edit-owner">
     <h2>Edit Owner</h2>
   
-    <form (ngSubmit)="saveChanges()">
+    <form>
       <div class="form-group">
         <label for="vat">Vat Number</label>
-        <input type="text" id="vat" [(ngModel)]="propertyOwners.vat" name="vat" required />
+        <input type="text" id="vat" [(ngModel)]="propertyOwner.vatNumber" name="vat" required />
       </div>
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" id="name" [(ngModel)]="propertyOwners.name" name="name" required />
+        <input type="text" id="name" [(ngModel)]="propertyOwner.name" name="name" required />
       </div>
       <div class="form-group">
         <label for="surname">Surname</label>
-        <input type="text" id="surname" [(ngModel)]="propertyOwners.surname" name="surname" required />
+        <input type="text" id="surname" [(ngModel)]="propertyOwner.surname" name="surname" required />
       </div>
       <div class="form-group">
         <label for="address">Address</label>
-        <input type="text" id="address" [(ngModel)]="propertyOwners.address" name="address" required />
+        <input type="text" id="address" [(ngModel)]="propertyOwner.address" name="address" required />
       </div>
       <div class="form-group">
         <label for="phoneNumber">Phone Number</label>
-        <input type="tel" id="phoneNumber" pattern="[0-9]{10}" [(ngModel)]="propertyOwners.phoneNumber" name="phoneNumber" required />
+        <input type="tel" id="phoneNumber" pattern="[0-9]{10}" [(ngModel)]="propertyOwner.phoneNumber" name="phoneNumber" required />
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email"[(ngModel)]="propertyOwners.email" name="email" required />
+        <input type="email" id="email"[(ngModel)]="propertyOwner.email" name="email" required />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" [(ngModel)]="propertyOwners.password" name="password" required />
+        <input type="password" id="password" [(ngModel)]="propertyOwner.password" name="password" required />
       </div>
       <div class="form-group">
         <label for="typeOfUser">Type of User</label>
-        <input type="text" id="typeOfUser" [(ngModel)]="propertyOwners.typeOfUser" name="typeOfUser" required />
+        <input type="text" id="typeOfUser" [(ngModel)]="propertyOwner.typeOfUser" name="typeOfUser" required />
       </div>
   
       <div class="btn-container">
-      <button class="savebtn" type="submit">Save Changes</button>
-      <button class="deletebtn" type="submit" (click)="deleteOwner()">Delete Owner</button>
+      <button class="savebtn"(click)="saveChanges()" type="submit">Save Changes</button>
+      <button class="deletebtn" type="submit" (click)="deletePropertyOwner()">Delete Owner</button>
     </div>
     </form>
   </div>

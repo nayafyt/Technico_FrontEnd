@@ -1,9 +1,31 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiResponse, IPropertyItems } from '../app/models/iproperty-items';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PropertiesService {
+  private apiUrl = "https://localhost:7063/api/PropertyItems";
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  getProperties(): Observable<IPropertyItems[]> {
+    return this.http.get<ApiResponse>(this.apiUrl).pipe(
+      map((response) => {
+        if (Array.isArray(response.value)) {
+          return response.value as IPropertyItems[];
+        } else {
+          return [];
+        }
+      }),
+      catchError((error) => {
+        console.error('API error:', error);
+        return of([]); 
+      })
+    );
+  }
+  
+  
 }

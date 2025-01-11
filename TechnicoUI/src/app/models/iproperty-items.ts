@@ -1,7 +1,12 @@
 export interface IPropertyItems {
-    Id: Number;
-    Address: string;
-    YearOfConstruction: Number;
-    TypeOfProperty: string;
-    Vat: string;
+    propertyIdentificationNumber: Number;
+    address: string;
+    yearOfConstruction: Number;
+    propertyType: string;
+    propertyOwnerVatNumber: string;
 }
+export interface ApiResponse {
+    value: IPropertyItems;  
+    statusCode: number;
+    description: string;
+  }

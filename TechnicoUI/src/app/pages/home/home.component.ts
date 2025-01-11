@@ -3,11 +3,20 @@ import { Component, OnInit } from '@angular/core';
 import { PaginationService } from '../../../services/pagination.service';
 import { IRepairsOngoing } from '../../models/irepairsOngoing';
 import { RepairsOngoingService } from '../../../services/repairs-ongoing.service';
+import { ReactiveFormsModule } from '@angular/forms';
+
+export interface IUsers {
+  firstname: string;
+  lastname: string;
+  moreThanTwoYearsExperience: boolean;
+  preferredLanguage: string;
+  favoriteLanguage: string;
+}
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -15,7 +24,6 @@ export class HomeComponent implements OnInit {
   repairs: IRepairsOngoing[] = [];
   filteredRepairs: IRepairsOngoing[] = [];
   paginatedRepairs: IRepairsOngoing[] = [];
-
   currentPage = 1;
   itemsPerPage = 3;
   totalPages = 0;
@@ -54,4 +62,16 @@ export class HomeComponent implements OnInit {
   get totalPagesList(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -1,21 +1,21 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { IPropertyOwner } from '../../models/iproperty-owner';
-import { PropertyOwnerService } from '../../../services/property-owner.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IPropertyOwner } from '../../models/iproperty-owner'; // Ensure the correct path
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { PropertyOwnerService } from '../../../services/property-owner.service';
 
 @Component({
   selector: 'app-create-owner',
-  standalone:true,
-  imports: [FormsModule, CommonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './create-owner.component.html',
-  styleUrls: ['./create-owner.component.scss'] // Corrected from 'styleUrl' to 'styleUrls'
+  styleUrls: ['./create-owner.component.scss'],
 })
-export class CreateOwnerComponent {
-
-  propertyOwners: IPropertyOwner = {
-    vat: '',
+export class CreateOwnerComponent implements OnInit {
+  propertyOwner: IPropertyOwner = {
+    vatNumber: '',
     name: '',
     surname: '',
     address: '',
@@ -23,21 +23,24 @@ export class CreateOwnerComponent {
     email: '',
     password: '',
     typeOfUser: '',
-    
+    id: ''
   };
 
-  constructor(private propertyOwnersService: PropertyOwnerService, 
-    private router: Router) {}
+  constructor(private router: Router, private http: HttpClient , private PropertyOwnerService: PropertyOwnerService)  {}
+
+  ngOnInit(): void {
+    console.log('CreateOwnerComponent initialized');
+  }
 
   onSubmit(): void {
-    this.propertyOwnersService.createPropertyOwner(this.propertyOwners).subscribe(
-      (newpropertyOwner) => {
-        console.log('Property Owner created:', newpropertyOwner);
+    this.PropertyOwnerService.createPropertyOwners(this.propertyOwner).subscribe({
+      next: (response) => {
+        console.log('Property Owner created successfully:', response);
         this.router.navigate(['/admin-homepage/owner-management']);
       },
-      (error) => {
-        console.error('Error creating property owner:', error);
-      }
-    );
+      error: (err) => {
+        console.error('Error creating property owner:', err);
+      },
+    });
   }
 }

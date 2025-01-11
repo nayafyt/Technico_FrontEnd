@@ -7,7 +7,7 @@
       <input
         type="text"
         id="vat"
-        [(ngModel)]="propertyOwners.vat"
+        [(ngModel)]="propertyOwner.vatNumber"
         name="vat"
         required
         pattern="[0-9A-Za-z]{1,10}" 
@@ -24,7 +24,7 @@
       <input
         type="text"
         id="name"
-        [(ngModel)]="propertyOwners.name"
+        [(ngModel)]="propertyOwner.name"
         name="name"
         required
         #name="ngModel"
@@ -39,7 +39,7 @@
       <input
         type="text"
         id="surname"
-        [(ngModel)]="propertyOwners.surname"
+        [(ngModel)]="propertyOwner.surname"
         name="surname"
         required
         #surname="ngModel"
@@ -54,7 +54,7 @@
       <input
         type="text"
         id="address"
-        [(ngModel)]="propertyOwners.address"
+        [(ngModel)]="propertyOwner.address"
         name="address"
         required
         #address="ngModel"
@@ -70,7 +70,7 @@
         type="text"
         pattern="[0-9]{10}"
         id="phoneNumber"
-        [(ngModel)]="propertyOwners.phoneNumber"
+        [(ngModel)]="propertyOwner.phoneNumber"
         name="phoneNumber"
         required
         #phoneNumber="ngModel"
@@ -85,7 +85,7 @@
       <input
         type="email"
         id="email"
-        [(ngModel)]="propertyOwners.email"
+        [(ngModel)]="propertyOwner.email"
         name="email"
         required
         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
@@ -103,7 +103,7 @@
       <input
         type="password"
         id="password"
-        [(ngModel)]="propertyOwners.password"
+        [(ngModel)]="propertyOwner.password"
         name="password"
         required
         #password="ngModel"
@@ -119,7 +119,7 @@
       <input
         type="text"
         id="typeOfUser"
-        [(ngModel)]="propertyOwners.typeOfUser"
+        [(ngModel)]="propertyOwner.typeOfUser"
         name="typeOfUser"
         required
         #typeOfUser="ngModel"

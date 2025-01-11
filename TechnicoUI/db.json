@@ -10,6 +10,7 @@
     },
     {
       "id": "872f",
+      "email": "a@a",
       "token": "mocked-token-12345",
       "newPassword": "aggelos11"
     },
@@ -25,6 +26,145 @@
       "id": "2231",
       "email": "a@a",
       "password": "sbnvjkldfebleirbv"
+    },
+    {
+      "id": "7b8e",
+      "email": "ergopoulos@gmail.com",
+      "password": "fdvse31ds3"
+    },
+    {
+      "id": "72ea",
+      "email": "ergopoulos@gmail.com",
+      "password": "r43t6534"
+    },
+    {
+      "id": "f2eb",
+      "email": "fgegr@gmial.com",
+      "password": "fdsfd323"
+    }
+  ],
+  "properties": [
+    {
+      "Id": 1,
+      "Address": "Kallithea 10",
+      "YearOfConstruction": 1960,
+      "TypeOfProperty": "Apartment building",
+      "Vat": 21746873,
+      "id": "73c2"
+    },
+    {
+      "Id": 2,
+      "Address": "Aigaleo 10",
+      "YearOfConstruction": 1998,
+      "TypeOfProperty": "Apartment building",
+      "Vat": 21746873,
+      "id": "a977"
+    },
+    {
+      "Id": 3,
+      "Address": "Alimos",
+      "YearOfConstruction": 2004,
+      "TypeOfProperty": "Lala building",
+      "Vat": 21732873,
+      "id": "06f8"
+    },
+    {
+      "Id": 4,
+      "Address": "Nikaia",
+      "YearOfConstruction": 1979,
+      "TypeOfProperty": "Loft building",
+      "Vat": 21749873,
+      "id": "8a0e"
+    }
+  ],
+  "owners": [
+    {
+      "id": "",
+      "vat": "123nik",
+      "name": "nik",
+      "surname": "kir",
+      "address": "ghtf",
+      "phoneNumber": "5678535789",
+      "email": "frgtr@gmail.com",
+      "password": "dfegr2g255436",
+      "typeOfUser": "user"
+    },
+    {
+      "id": "",
+      "vat": "123test",
+      "name": "test",
+      "surname": "test",
+      "address": "test",
+      "phoneNumber": "1234567789",
+      "email": "test@gmail.com",
+      "password": "123456test",
+      "typeOfUser": "user"
+    },
+    {
+      "id": "",
+      "vat": "12345test2",
+      "name": "test2",
+      "surname": "test2",
+      "address": "test2",
+      "phoneNumber": "1234567890",
+      "email": "test2@gmail.com",
+      "password": "fre2g42",
+      "typeOfUser": "user"
+    },
+    {
+      "id": "",
+      "vat": "fewf",
+      "name": "frew",
+      "surname": "fdwa",
+      "address": "fewa",
+      "phoneNumber": "2314354135",
+      "email": "cdavsg@gmail.com",
+      "password": "fgeq431",
+      "typeOfUser": "user"
+    },
+    {
+      "id": "",
+      "vat": "r4wfw",
+      "name": "efw",
+      "surname": "DFSF",
+      "address": "FEwf",
+      "phoneNumber": "1234567832",
+      "email": "GFRE@GMAIL.COM",
+      "password": "SDFRGEAR",
+      "typeOfUser": "USER"
+    },
+    {
+      "id": "",
+      "vat": "1234dsads",
+      "name": "das",
+      "surname": "dsa",
+      "address": "dsa",
+      "phoneNumber": "4356476357",
+      "email": "xristinagalani98@gmail.com",
+      "password": "dfs",
+      "typeOfUser": "user"
+    },
+    {
+      "id": "",
+      "vat": "43tfre",
+      "name": "ffew",
+      "surname": "efwf",
+      "address": "fewf",
+      "phoneNumber": "0432545643",
+      "email": "fdsfds@gmail.com",
+      "password": "frfrw21",
+      "typeOfUser": "user"
+    },
+    {
+      "id": "",
+      "vat": "xz",
+      "name": "xZ",
+      "surname": "xz",
+      "address": "xz",
+      "phoneNumber": "0123456788",
+      "email": "xristinagalani98@gmail.com",
+      "password": "czcz",
+      "typeOfUser": "user"
     }
   ]
 }

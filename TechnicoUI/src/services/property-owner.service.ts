@@ -1,46 +1,90 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { IPropertyOwner } from '../app/models/iproperty-owner';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { IPropertyOwner } from '../app/models/iproperty-owner'; 
+import { ApiResponse } from '../app/models/iproperty-items';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PropertyOwnerService {
-  private propertyOwners: IPropertyOwner[] = [
-    {
-      vat: 'ak3425',
-      name: 'Alex',
-      surname: 'Ergopoulos',
-      address: 'Odyseeia',
-      phoneNumber: 698743596,
-      email: 'ergopoulos@gmail.com',
-      password: '12345!',
-      typeOfUser: 'User',
-    },
-  ];
-  constructor() {}
-  getPropertyOwners(): Observable<any[]> {
-    return of(this.propertyOwners); 
+  private apiUrl = 'https://localhost:7063/api/PropertyOwners'; 
+
+  constructor(private http: HttpClient) {}
+
+  getPropertyOwners(): Observable<IPropertyOwner[]> {
+    return this.http.get<ApiResponse>(this.apiUrl).pipe(
+      map((response) => {
+        if (Array.isArray(response.value)) {
+          return response.value as IPropertyOwner[];
+        } else {
+          return [];
+        }
+      }),
+      catchError((error) => {
+        console.error('API error:', error);
+        return of([]); 
+      })
+    );
   }
-  createPropertyOwner(owner: any): Observable<any> {
-    this.propertyOwners.push(owner); 
-    return of(owner); 
+
+  createPropertyOwners(propertyOwner: IPropertyOwner): Observable<IPropertyOwner[]> {
+    return this.http.post<ApiResponse>(this.apiUrl, propertyOwner).pipe(
+      map((response) => {
+        if (Array.isArray(response.value)) {
+          return response.value as IPropertyOwner[];
+        } else {
+          return [];
+        }
+      }),
+      catchError((error) => {
+        console.error('Error creating property owner:', error);
+        return throwError(() => new Error('Failed to create property owner'));
+      })
+    );
   }
-  updatePropertyOwner(owner: any): Observable<any> {
-    const index = this.propertyOwners.findIndex(o => o.vat === owner.vat);
-    if (index !== -1) {
-      this.propertyOwners[index] = owner; 
+
+  updatePropertyOwner(owner: IPropertyOwner): Observable<IPropertyOwner[]> {
+    if (!owner.vatNumber) {
+      console.error('VAT Number is undefined');
+      return throwError(() => new Error('Invalid VAT Number'));
     }
-    return of(owner);
+
+    const url = `${this.apiUrl}/${owner.vatNumber}`;
+    return this.http.put<ApiResponse>(url, owner).pipe(
+      map((response) => {
+        if (response && Array.isArray(response.value)) {
+          return response.value as IPropertyOwner[];
+        } else {
+          return [];
+        }
+      }),
+      catchError((error) => {
+        console.error('Error updating property owner:', error);
+        return throwError(() => new Error('Failed to update property owner'));
+      })
+    );
   }
-  deleteOwner(vat:string): Observable <any> {
-    const index=this.propertyOwners.findIndex((owner)=> owner.vat===vat);
-    if(index!==1){
-      this.propertyOwners.splice(index,1);
-      return of({message:'Property Owner deleted sucessfully'});
+
+  deletePropertyOwner(owner: IPropertyOwner): Observable<IPropertyOwner[]> {
+    if (!owner.vatNumber) {
+      console.error('VAT Number is undefined');
+      return throwError(() => new Error('Invalid VAT Number'));
     }
-    else{
-      return throwError(()=> new Error('Property owner not found'));
-    }
+
+    const url = `${this.apiUrl}/${owner.vatNumber}`;
+    return this.http.delete<ApiResponse>(url).pipe(
+      map((response) => {
+        if (response && Array.isArray(response.value)) {
+          return response.value as IPropertyOwner[];
+        } else {
+          return [];
+        }
+      }),
+      catchError((error) => {
+        console.error('Error deleting property owner:', error);
+        return throwError(() => new Error('Failed to delete property owner'));
+      })
+    );
   }
 }
