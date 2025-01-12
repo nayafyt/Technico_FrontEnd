@@ -11,8 +11,13 @@ export class PropertiesService {
 
   constructor(private http: HttpClient) {}
 
-  getProperties(): Observable<IPropertyItems[]> {
-    return this.http.get<ApiResponse>(this.apiUrl).pipe(
+  getProperties(pageCount: number = 1, pageSize: number = 10): Observable<IPropertyItems[]> {
+    return this.http.get<ApiResponse>(this.apiUrl, {
+      params: {
+        pageCount: pageCount.toString(),
+        pageSize: pageSize.toString(),
+      },
+    }).pipe(
       map((response) => {
         if (Array.isArray(response.value)) {
           return response.value as IPropertyItems[];
@@ -22,10 +27,22 @@ export class PropertiesService {
       }),
       catchError((error) => {
         console.error('API error:', error);
-        return of([]); 
+        return of([]);
       })
     );
   }
-  
-  
+  getPropertyType(type: number | string): string {
+    if (typeof type === 'number') {
+      switch (type) {
+        case 0:
+          return 'Building';
+        case 1:
+          return 'Apartment';
+        default:
+          return 'Unknown';
+      }
+    }
+    return type as string; // Assuming the type can be directly a string
+  }
+
 }

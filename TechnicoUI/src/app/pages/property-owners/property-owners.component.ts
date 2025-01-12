@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { PageItemDirective, PageLinkDirective, PaginationComponent } from '@coreui/angular';
 import { PropertiesService } from '../../../services/properties.service';
+import { PaginationService } from '../../../services/pagination.service';
 
 @Component({
   selector: 'app-property-owners',
@@ -13,44 +14,35 @@ import { PropertiesService } from '../../../services/properties.service';
   styleUrls: ['./property-owners.component.scss'],
 })
 export class PropertyOwnersComponent implements OnInit {
-  properties: IPropertyItems[] = []; 
+  properties: IPropertyItems[] = [];
   paginatedProperties: IPropertyItems[] = [];
   currentPage = 1;
   itemsPerPage = 3;
-  totalPages = 0;
+  totalPages: number[] = [];
 
-  constructor(private propertiesService: PropertiesService) {}
-//.nextmethod
+  constructor(private propertiesService: PropertiesService, private paginationService: PaginationService) {}
+
   ngOnInit(): void {
     this.propertiesService.getProperties().subscribe(
       (data: IPropertyItems[]) => {
-        this.properties = data; 
-        this.calculatePagination(); 
-        console.log('Fetched properties:', this.properties);
+        this.properties = data;
+        const paginationResult = this.paginationService.paginate(this.properties, this.currentPage, this.itemsPerPage);
+        this.paginatedProperties = paginationResult.paginatedItems;
+        this.totalPages = Array.from({ length: paginationResult.totalPages }, (_, i) => i + 1); 
       },
-      (error) => {                                            //.Next method gia to error 
+      (error) => {
         console.error('Error fetching properties:', error);
       }
     );
   }
 
-  calculatePagination(): void {
-    this.totalPages = Math.ceil(this.properties.length / this.itemsPerPage);
-    this.paginatedProperties = this.properties.slice(
-      (this.currentPage - 1) * this.itemsPerPage,
-      this.currentPage * this.itemsPerPage
-    );
-  }
-
   changePage(page: number): void {
-    if (page < 1 || page > this.totalPages) {
+    if (page < 1 || page > this.totalPages.length) {
+      console.warn('Invalid page:', page);
       return;
     }
     this.currentPage = page;
-    this.calculatePagination();
-  }
-
-  get totalPagesList(): number[] {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    const paginationResult = this.paginationService.paginate(this.properties, this.currentPage, this.itemsPerPage);
+    this.paginatedProperties = paginationResult.paginatedItems;
   }
 }
