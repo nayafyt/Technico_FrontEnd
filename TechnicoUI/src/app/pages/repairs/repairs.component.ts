@@ -34,7 +34,7 @@ export class RepairsComponent implements OnInit {
 
   ngOnInit(): void {
     this.repairsService.getRepairs().subscribe((data: IRepairs[]) => {
-      console.log(data);
+      console.log(1111,data);
       this.repairs = data;
       this.filteredRepairs = [...this.repairs];
       this.updatePagination();

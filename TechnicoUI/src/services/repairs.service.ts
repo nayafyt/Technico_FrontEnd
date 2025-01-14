@@ -6,12 +6,9 @@ import {
   repairTypeToString,
   statusTypeToString,
   propertyTypeToString,
-  userTypeToString,
   stringToRepairType,
   stringToStatusType,
   stringToPropertyType,
-  stringToUserType
-
 } from '../utils/enum-utils';
 import { RepairType, StatusType, PropertyType, UserType } from '../enums/enums';
 
@@ -19,8 +16,7 @@ import { RepairType, StatusType, PropertyType, UserType } from '../enums/enums';
   providedIn: 'root',
 })
 export class RepairsService {
-  private apiUrl =
-    'http://localhost:5074/api/PropertyRepairs';
+  private apiUrl = 'http://localhost:5074/api/PropertyRepairs';
 
   constructor(private http: HttpClient) {}
 
@@ -31,19 +27,23 @@ export class RepairsService {
   // }
 
   getRepairs(): Observable<IRepairs[]> {
-    return this.http
-      .get<ApiResponse2>(this.apiUrl)
-      .pipe(
-        map((response) => 
-          response.value.map(repair => ({
-            ...repair,
-            status: statusTypeToString(repair.status as unknown as StatusType ),
-            repairType: repairTypeToString(repair.repairType as unknown as RepairType),
-            userType: userTypeToString(repair.propertyOwnerDto.userType as unknown as UserType),
-            // propertyType: propertyTypeToString(repair.propertyOwnerDto.propertyItems[0].propertyType as unknown as PropertyType)
-          }))
-        )
-      );
+    return this.http.get<ApiResponse2>(this.apiUrl).pipe(
+      map((response) =>
+        response.value.map((repair) => ({
+          ...repair,
+          status: statusTypeToString(repair.status as unknown as StatusType),
+          repairType: repairTypeToString(
+            repair.repairType as unknown as RepairType
+          ),
+          propertyItemDto: {
+            ... repair.propertyItemDto,
+            propertyType: propertyTypeToString(
+              repair.propertyItemDto.propertyType as unknown as PropertyType
+            ),
+          },
+        }))
+      )
+    );
   }
 
   // searchRepairsById(userId: string): Observable<IRepairs[]> {
@@ -62,11 +62,17 @@ export class RepairsService {
           response.value.map((repair) => ({
             ...repair,
             status: statusTypeToString(repair.status as unknown as StatusType),
-            repairType: repairTypeToString(repair.repairType as unknown as RepairType),
-            userType: userTypeToString(repair.propertyOwnerDto.userType as unknown as UserType),
-            // propertyType: propertyTypeToString(repair.propertyOwnerDto.propertyItems[0].propertyType as unknown as PropertyType)
+            repairType: repairTypeToString(
+              repair.repairType as unknown as RepairType
+            ),
+            propertyItemDto: {
+              ... repair.propertyItemDto,
+              propertyType: propertyTypeToString(
+                repair.propertyItemDto.propertyType as unknown as PropertyType
+              ),
+            },
           }))
-        ),
+        )
       );
   }
 
@@ -86,33 +92,45 @@ export class RepairsService {
           response.value.map((repair) => ({
             ...repair,
             status: statusTypeToString(repair.status as unknown as StatusType),
-            repairType: repairTypeToString(repair.repairType as unknown as RepairType),
-            userType: userTypeToString(repair.propertyOwnerDto.userType as unknown as UserType),
-            // propertyType: propertyTypeToString(repair.propertyOwnerDto.propertyItems[0].propertyType as unknown as PropertyType)
+            repairType: repairTypeToString(
+              repair.repairType as unknown as RepairType
+            ),
+            // propertyItemDto: {
+            //   ... repair.propertyItemDto,
+            //   propertyType: propertyTypeToString(
+            //     repair.propertyItemDto.propertyType as unknown as PropertyType
+            //   ),
+            // },
           }))
         )
       );
   }
 
   createRepair(repair: IRepairs): Observable<IRepairs[]> {
-
     const { id, ...repairPayload } = repair;
 
     const repairToSend = {
       ...repairPayload,
       status: stringToStatusType(repair.status),
       repairType: stringToRepairType(repair.repairType),
-      userType: userTypeToString(repair.propertyOwnerDto.userType as unknown as UserType),
-      // propertyType: propertyTypeToString(repair.propertyOwnerDto.propertyItems[0].propertyType as unknown as PropertyType)
+      propertyItemDto: {
+        ...repair.propertyItemDto,
+        propertyType: stringToPropertyType(repair.propertyItemDto.propertyType),
+      },
     };
+    console.log(1111, repairToSend);
 
     return this.http.post<ApiResponse>(this.apiUrl, repairToSend).pipe(
       map((response: any) => ({
         ...response,
         status: statusTypeToString(response.status),
         repairType: repairTypeToString(response.repairType),
-        userType: userTypeToString(repair.propertyOwnerDto.userType as unknown as UserType),
-        // propertyType: propertyTypeToString(repair.propertyOwnerDto.propertyItems[0].propertyType as unknown as PropertyType)
+        // propertyItemDto: {
+        //   ...response.propertyItemDto,
+        //   propertyType: propertyTypeToString(
+        //     response.propertyItemDto.propertyType as unknown as PropertyType
+        //   ),
+        // },
       }))
     );
   }
@@ -122,9 +140,13 @@ export class RepairsService {
       ...repair,
       status: stringToStatusType(repair.status),
       repairType: stringToRepairType(repair.repairType),
-      userType: userTypeToString(repair.propertyOwnerDto.userType as unknown as UserType),
-      // propertyType: propertyTypeToString(repair.propertyOwnerDto.propertyItems[0].propertyType as unknown as PropertyType)
+      propertyItemDto: {
+        ...repair.propertyItemDto,
+        propertyType: stringToPropertyType(repair.propertyItemDto.propertyType),
+      },
     };
+    console.log(2222, repairToSend);
+    
     const url = `${this.apiUrl}/${repair.id}`;
 
     return this.http.put<IRepairs>(url, repairToSend);

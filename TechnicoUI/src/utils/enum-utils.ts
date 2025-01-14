@@ -31,13 +31,13 @@ export function statusTypeToString(status: StatusType): string {
     }
   }
 
-  export function userTypeToString(userType: UserType): string {
-    switch (userType) {
-      case UserType.User: return 'user';
-      case UserType.Admin: return 'admin';
-      default: return 'unknown';
-    }
-  }
+  // export function userTypeToString(userType: UserType): string {
+  //   switch (userType) {
+  //     case UserType.User: return 'user';
+  //     case UserType.Admin: return 'admin';
+  //     default: return 'unknown';
+  //   }
+  // }
   
   export function stringToStatusType(status: string): StatusType {
     switch (status) {
@@ -62,17 +62,17 @@ export function statusTypeToString(status: StatusType): string {
 
   export function stringToPropertyType(propertyType: string): PropertyType {
     switch (propertyType) {
-      case 'in progress': return PropertyType.Detached;
-      case 'pending': return PropertyType.Maisonet;
-      case 'completed': return PropertyType.Apartment;
+      case 'detached': return PropertyType.Detached;
+      case 'maisonet': return PropertyType.Maisonet;
+      case 'apartment': return PropertyType.Apartment;
       default: throw new Error(`Unknown status: ${propertyType}`);
     }
   }
 
-  export function stringToUserType(userType: string): UserType {
-    switch (userType) {
-      case 'in progress': return UserType.User;
-      case 'pending': return UserType.Admin;
-      default: throw new Error(`Unknown status: ${userType}`);
-    }
-  }
+  // export function stringToUserType(userType: string): UserType {
+  //   switch (userType) {
+  //     case 'in progress': return UserType.User;
+  //     case 'pending': return UserType.Admin;
+  //     default: throw new Error(`Unknown status: ${userType}`);
+  //   }
+  // }

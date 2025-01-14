@@ -77,131 +77,11 @@
       </div>
 
       <div class="form-group">
-        <label for="vatNumber">Vat Number 2</label>
-        <input
-          type="text"
-          id="vatNumber"
-          [(ngModel)]="repair.propertyOwnerDto.vatNumber"
-          name="vatNumber"
-          required
-          #vatNumber="ngModel"
-        />
-        <div *ngIf="vatNumber.invalid && vatNumber.touched" class="error">
-          Vat Number 2 is required.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          [(ngModel)]="repair.propertyOwnerDto.name"
-          name="name"
-          required
-          #name="ngModel"
-        />
-        <div *ngIf="name.invalid && name.touched" class="error">
-          Name is required.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="surname">Surname</label>
-        <input
-          type="text"
-          id="surname"
-          [(ngModel)]="repair.propertyOwnerDto.surname"
-          name="surname"
-          required
-          #surname="ngModel"
-        />
-        <div *ngIf="surname.invalid && surname.touched" class="error">
-          Surname is required.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="address">Address 2</label>
-        <input
-          type="text"
-          id="address"
-          [(ngModel)]="repair.propertyOwnerDto.address"
-          name="address"
-          required
-          #address="ngModel"
-        />
-        <div *ngIf="address.invalid && address.touched" class="error">
-          Address 2 is required.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="phoneNumber">PhoneNumber</label>
-        <input
-          type="text"
-          id="phoneNumber"
-          [(ngModel)]="repair.propertyOwnerDto.phoneNumber"
-          name="phoneNumber"
-          required
-          #phoneNumber="ngModel"
-        />
-        <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="error">
-          PhoneNumber is required.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="text"
-          id="email"
-          [(ngModel)]="repair.propertyOwnerDto.email"
-          name="email"
-          required
-          #email="ngModel"
-        />
-        <div *ngIf="email.invalid && email.touched" class="error">
-          Email is required.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="text"
-          id="password"
-          [(ngModel)]="repair.propertyOwnerDto.password"
-          name="password"
-          required
-          #password="ngModel"
-        />
-        <div *ngIf="password.invalid && password.touched" class="error">
-          Password is required.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="userType">UserType</label>
-        <input
-          type="text"
-          id="userType"
-          [(ngModel)]="repair.propertyOwnerDto.userType"
-          name="userType"
-          required
-          #userType="ngModel"
-        />
-        <div *ngIf="userType.invalid && userType.touched" class="error">
-          UserType is required.
-        </div>
-      </div>
-
-      <div class="form-group">
         <label for="propertyIdentificationNumber">Property Identification Number</label>
         <input
           type="text"
           id="propertyIdentificationNumber"
-          [(ngModel)]="repair.propertyOwnerDto.propertyItems[0].propertyIdentificationNumber"
+          [(ngModel)]="repair.propertyItemDto.propertyIdentificationNumber"
           name="propertyIdentificationNumber"
           required
           #propertyIdentificationNumber="ngModel"
@@ -212,17 +92,17 @@
       </div>
 
       <div class="form-group">
-        <label for="address">Address 3</label>
+        <label for="address">Address 2</label>
         <input
           type="text"
           id="address"
-          [(ngModel)]="repair.propertyOwnerDto.propertyItems[0].address"
+          [(ngModel)]="repair.propertyItemDto.address"
           name="address"
           required
           #address="ngModel"
         />
         <div *ngIf="address.invalid && address.touched" class="error">
-          Address 3 is required.
+          Address 2 is required.
         </div>
       </div>
 
@@ -231,7 +111,7 @@
         <input
           type="text"
           id="propertyOwnerVatNumber"
-          [(ngModel)]="repair.propertyOwnerDto.propertyItems[0].propertyOwnerVatNumber"
+          [(ngModel)]="repair.propertyItemDto.propertyOwnerVatNumber"
           name="propertyOwnerVatNumber"
           required
           #propertyOwnerVatNumber="ngModel"
@@ -240,13 +120,28 @@
           Property VAT Number is required.
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="propertyType">Property Type</label>
+        <input
+          type="text"
+          id="propertyType"
+          [(ngModel)]="repair.propertyItemDto.propertyType"
+          name="propertyType"
+          required
+          #propertyType="ngModel"
+        />
+        <div *ngIf="propertyType.invalid && propertyType.touched" class="error">
+          Property Type is required.
+        </div>
+      </div>
   
       <div class="form-group">
         <label for="yearOfConstruction">Year Of Construction</label>
         <input
           type="text"
           id="yearOfConstruction"
-          [(ngModel)]="repair.propertyOwnerDto.propertyItems[0].yearOfConstruction"
+          [(ngModel)]="repair.propertyItemDto.yearOfConstruction"
           name="yearOfConstruction"
           required
           #yearOfConstruction="ngModel"

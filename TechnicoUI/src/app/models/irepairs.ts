@@ -6,25 +6,13 @@ export interface IRepairs {
   address: string;
   status: string;
   cost: number;
-  propertyOwnerDto: {
-    vatNumber: number;
+  propertyItemDto: {
+    propertyIdentificationNumber: string;
     address: string;
-    name: string;
-    surname: string;
-    phoneNumber: string;
-    email: string;
-    password: string;
-    userType: string;
-    propertyItems: [
-      {
-        propertyIdentificationNumber: string;
-        yearOfConstruction: number;
-        address: string;
-        propertyType: string;
-        propertyOwnerVatNumber: string;
-      }
-    ];
-    propertyRepairs: [];
+    yearOfConstruction: number;
+    propertyType: string;
+    propertyOwnerVatNumber: string;
+    propertyRepairDtos: [];
   };
 }
 

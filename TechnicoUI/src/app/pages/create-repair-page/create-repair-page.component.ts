@@ -14,31 +14,20 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateRepairPageComponent {
   repair: IRepairs = {
+    id: 0,
     dateTime: '',
     repairType: '',
     description: '',
     address: '',
     cost: 0,
     status: 'pending',
-    propertyOwnerDto: {
-      vatNumber: 0, // !!!!!!
+    propertyItemDto: {
+      propertyIdentificationNumber: '',
       address: '',
-      name: '',
-      surname: '',
-      phoneNumber: '',
-      email: '',
-      password: '',
-      userType: '',
-      propertyItems: [
-        {
-          propertyIdentificationNumber: '',
-          address: '',
-          yearOfConstruction: 0,
-          propertyType: '',
-          propertyOwnerVatNumber: '', // !!!!!!!
-        }
-      ],
-      propertyRepairs: []
+      yearOfConstruction: 0,
+      propertyType: '',
+      propertyOwnerVatNumber: '',
+      propertyRepairDtos: [],
     },
   };
 
@@ -51,7 +40,7 @@ export class CreateRepairPageComponent {
         this.router.navigate(['/admin-homepage/repairs']);
       },
       error: (err) => {
-        console.error('Failed to create repair:', err.error);
+        console.error('Failed to create repair:', err);
       },
     });
   }

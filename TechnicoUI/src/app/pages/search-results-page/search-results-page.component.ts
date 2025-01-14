@@ -36,10 +36,18 @@ export class SearchResultsPageComponent implements OnInit {
       const vatNumber = params['vatNumber'];
 
       if (startDate) {
-        this.repairsService.searchRepairsByDate(startDate).subscribe((data) => {
-          this.filteredRepairs = data;
-          this.isLoading = false;
-          this.updatePagination();
+        this.repairsService.searchRepairsByDate(startDate).subscribe({
+          next: (data) => {
+            this.filteredRepairs = data;
+            this.isLoading = false;
+            this.updatePagination();
+          },
+          error: (error) => {
+            if (error.status === 404) {
+              this.isLoading = false;
+              this.updatePagination();
+            }
+          },
         });
       } else if (vatNumber) {
         this.repairsService.searchRepairsByVatNumber(vatNumber).subscribe({
