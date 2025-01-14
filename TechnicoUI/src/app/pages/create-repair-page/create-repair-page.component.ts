@@ -10,30 +10,49 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './create-repair-page.component.html',
-  styleUrls: ['./create-repair-page.component.scss']
+  styleUrls: ['./create-repair-page.component.scss'],
 })
 export class CreateRepairPageComponent {
   repair: IRepairs = {
-    date: '',
+    dateTime: '',
     repairType: '',
     description: '',
     address: '',
-    status: 'in progress',
     cost: 0,
-    owner: '',
-    title: '',
-    location: '',
-    userId: ''
+    status: 'pending',
+    propertyOwnerDto: {
+      vatNumber: 0, // !!!!!!
+      address: '',
+      name: '',
+      surname: '',
+      phoneNumber: '',
+      email: '',
+      password: '',
+      userType: '',
+      propertyItems: [
+        {
+          propertyIdentificationNumber: '',
+          address: '',
+          yearOfConstruction: 0,
+          propertyType: '',
+          propertyOwnerVatNumber: '', // !!!!!!!
+        }
+      ],
+      propertyRepairs: []
+    },
   };
 
   constructor(private repairsService: RepairsService, private router: Router) {}
 
   onSubmit(): void {
-    this.repairsService.createRepair(this.repair).subscribe(
-      (newRepair) => {
+    this.repairsService.createRepair(this.repair).subscribe({
+      next: (newRepair) => {
         console.log('Repair created:', newRepair);
         this.router.navigate(['/admin-homepage/repairs']);
-      }
-    );
+      },
+      error: (err) => {
+        console.error('Failed to create repair:', err.error);
+      },
+    });
   }
 }

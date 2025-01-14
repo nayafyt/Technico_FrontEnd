@@ -12,12 +12,12 @@
         />
       </div>
       <div class="form-group">
-        <label for="userId">User ID:</label>
+        <label for="userId">VAT Number:</label>
         <input
           type="text"
           id="userId"
-          placeholder="Search by User ID"
-          [(ngModel)]="searchCriteria.userId"
+          placeholder="Search by VAT Number"
+          [(ngModel)]="searchCriteria.vatNumber"
           name="userId"
         />
       </div>
@@ -32,11 +32,13 @@
   </div>
   <div *ngFor="let repair of paginatedRepairs" class="repair-card">
     <div class="repair-info">
-      <h3>{{ repair.title }}</h3>
-      <p>Date: {{ repair.date }}</p>
-      <p>Location: {{ repair.location }}</p>
-      <p>Cost: ${{ repair.cost }}</p>
-      <p>Owner: {{ repair.owner }}</p>
+      <h3>{{ repair.repairType }}</h3>
+      <p>Address: {{ repair.address }}</p>
+      <p>Date: {{ repair.dateTime }}</p>
+      <p>Cost: {{ repair.cost }}</p>
+      <!-- <p>Property Identification Number: {{ repair.propertyItemDto.propertyIdentificationNumber }}</p>
+      <p>Property Owner Vat Number: ${{ repair.propertyItemDto.propertyOwnerVatNumber }}</p>
+      <p>Year Of Construction: {{ repair.propertyItemDto.yearOfConstruction }}</p> -->
     </div>
     <div class="repair-description">
       <p>{{ repair.description }}</p>

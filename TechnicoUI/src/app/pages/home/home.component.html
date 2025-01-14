@@ -14,11 +14,15 @@
   <h2>Ongoing Repairs</h2>
   <div *ngFor="let repair of paginatedRepairs" class="repair-card">
     <div class="repair-info">
-      <h3>{{ repair.title }}</h3>
-      <p>Date: {{ repair.date }}</p>
-      <p>Location: {{ repair.location }}</p>
+      <h3>{{ repair.repairType }}</h3>
+      <p>Date: {{ repair.dateTime }}</p>
+      <p>Address: {{ repair.address }}</p>
       <p>Cost: ${{ repair.cost }}</p>
-      <p>Owner: {{ repair.owner }}</p>
+      <!-- <p>Property Type: ${{ repair.propertyItemDto.propertyType }}</p>
+      <p>Year Of Construction: ${{ repair.propertyItemDto.yearOfConstruction }}</p> -->
+      <!-- <p>Address: ${{ repair.propertyItemDto.address }}</p> -->
+      <!-- <p>Property Identification Number: {{ repair.propertyItemDto.propertyIdentificationNumber }}</p>
+      <p>Property Owner Vat Number: {{ repair.propertyItemDto.propertyOwnerVatNumber }}</p> -->
     </div>
     <div class="repair-description">
       <p>{{ repair.description }}</p>

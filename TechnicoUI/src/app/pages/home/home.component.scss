@@ -63,15 +63,16 @@
   border-radius: 5px;
   color: white;
   transition: background-color 0.3s ease;
+  cursor: default;
 }
 
 .repair-button.in-progress {
   background-color: #ff9800;
 }
 
-.repair-button:hover {
-  opacity: 0.8;
-}
+// .repair-button:hover {
+//   opacity: 0.8;
+// }
 
 .pagination {
   display: flex;

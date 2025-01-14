@@ -20,7 +20,7 @@ export class RepairsComponent implements OnInit {
   searchCriteria = {
     startDate: '',
     endDate: '',
-    userId: '',
+    vatNumber: '',
   };
   currentPage = 1;
   itemsPerPage = 3;
@@ -34,6 +34,7 @@ export class RepairsComponent implements OnInit {
 
   ngOnInit(): void {
     this.repairsService.getRepairs().subscribe((data: IRepairs[]) => {
+      console.log(data);
       this.repairs = data;
       this.filteredRepairs = [...this.repairs];
       this.updatePagination();
@@ -41,14 +42,16 @@ export class RepairsComponent implements OnInit {
   }
 
   searchRepairs(): void {
-    const { startDate, endDate, userId } = this.searchCriteria;
+    const { startDate, endDate, vatNumber } = this.searchCriteria;
 
     let results = [...this.repairs];
 
     if (startDate) {
-      results = results.filter(
-        (repair) =>
-          new Date(repair.date).getTime() === new Date(startDate).getTime()
+      this.repairsService.searchRepairsByDate(startDate).subscribe(
+        (data: IRepairs[]) => {
+          this.filteredRepairs = data;
+          this.updatePagination();
+        }
       );
     }
 
@@ -58,14 +61,19 @@ export class RepairsComponent implements OnInit {
     //   );
     // }
 
-    if (userId) {
-      results = results.filter((repair) => repair.userId === userId);
+    if (vatNumber) {
+      this.repairsService.searchRepairsByVatNumber(vatNumber).subscribe(
+        (data: IRepairs[]) => {
+          this.filteredRepairs = data;
+          this.updatePagination();
+        }
+      );
     }
 
     this.filteredRepairs = results;
 
     this.router.navigate(['/admin-homepage/search-results-page'], {
-      queryParams: { startDate, userId },
+      queryParams: { startDate, vatNumber },
     });
   }
 
@@ -90,11 +98,13 @@ export class RepairsComponent implements OnInit {
   get totalPagesList(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
-  updateRepairStatus(repair: any, status: string) {
+  updateRepairStatus(repair: IRepairs, status: string) {
     repair.status = status;
-
-    this.repairsService.updateRepairStatus(repair).subscribe((updatedRepair) => {
-      console.log('Repair status updated:', updatedRepair);
-    })
+    console.log(111111,repair)
+    this.repairsService
+      .updateRepairStatus(repair)
+      .subscribe((updatedRepair) => {
+        console.log('Repair status updated:', updatedRepair);
+      });
   }
 }

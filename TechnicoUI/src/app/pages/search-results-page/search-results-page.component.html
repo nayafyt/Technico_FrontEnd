@@ -6,11 +6,13 @@
   <div *ngIf="!isLoading && paginatedRepairs.length > 0">
     <div *ngFor="let repair of paginatedRepairs" class="repair-item">
       <div class="repair-info">
-        <h3>{{ repair.title }}</h3>
-        <p>Date: {{ repair.date }}</p>
-        <p>Location: {{ repair.location }}</p>
-        <p>Cost: ${{ repair.cost }}</p>
-        <p>Owner: {{ repair.owner }}</p>
+        <h3>{{ repair.repairType }}</h3>
+        <p>Address: {{ repair.address }}</p>
+        <p>Date: {{ repair.dateTime }}</p>
+        <p>Cost: {{ repair.cost }}</p>
+        <!-- <p>Property Identification Number: {{ repair.propertyOwnerDto.propertyItems[0].propertyIdentificationNumber }}</p>
+        <p>Property Owner Vat Number: ${{ repair.propertyOwnerDto.vatNumber }}</p>
+        <p>Year Of Construction: {{ repair.propertyOwnerDto.propertyItems[0].yearOfConstruction}}</p> -->
       </div>
       <div class="repair-description">
         <p>{{ repair.description }}</p>
@@ -22,6 +24,13 @@
       >
         {{ repair.status }}
       </button>
+      <button
+      *ngIf="repair.status === 'declined'"
+      class="repair-button-declined"
+      [ngClass]="{ scheduled: repair.status === 'declined' }"
+    >
+      {{ repair.status }}
+    </button>
     </div>
     <div class="pagination">
       <button

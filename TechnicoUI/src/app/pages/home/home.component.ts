@@ -26,11 +26,20 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.repairsService.getRepairs().subscribe((data: IRepairs[]) => {
-      const filteredData = data.filter(item => item.status === 'in progress');
-      this.repairs = filteredData;
-      this.filteredRepairs = [...this.repairs];
-      this.updatePagination();
+    this.repairsService.getRepairs().subscribe({
+      next: (data: IRepairs[]) => {
+        const filteredData = data
+        .filter(
+          (item) => item.status === 'in progress'
+        );
+        console.log('Filtered repairs:', filteredData);
+        this.repairs = filteredData;
+        this.filteredRepairs = [...this.repairs];
+        this.updatePagination();
+      },
+      error: (err) => {
+        console.error('Failed to fetch repairs:', err.error);
+      },
     });
   }
 
