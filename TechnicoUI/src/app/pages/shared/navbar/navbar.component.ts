@@ -1,25 +1,35 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
-  imports: [],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  activeLink: string = '';
 
-  goToHome() {
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.activeLink = event.urlAfterRedirects;
+      }
+    });
+  }
+
+  goToHome(): void {
     this.router.navigate(['/admin-homepage/home']);
   }
 
-  goToRepairs() {
+  goToRepairs(): void {
     this.router.navigate(['/admin-homepage/repairs']);
   }
 
-  goToPropertyOwners() {
+  goToPropertyOwners(): void {
     this.router.navigate(['/admin-homepage/property-owners']);
+  }
+
+  isActive(url: string): boolean {
+    return this.activeLink === url;
   }
 }

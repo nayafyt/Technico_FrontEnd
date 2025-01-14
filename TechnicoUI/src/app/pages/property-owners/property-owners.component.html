@@ -1,6 +1,6 @@
 <div class="container">
     <div class="Owner-container">
-    <p>Manage the properties efficiently with our user-friendly platform. View, edit, and create property owners with ease. </p>
+    <p>Manage the Owners & the roperties efficiently with our user-friendly platform. <br> View, edit, and create property owners with ease. </p>
     <div class="btn-container">
       <a routerLink="/admin-homepage/owner-management" class="btn btn-property-management">
         Owner Management
@@ -12,28 +12,29 @@
     </div>    
     </div>
 <div class="container-properties" >
-    <h2>Properties</h2>
-    <div *ngFor="let propertyitem of paginatedProperties" class="property-card">
+    <h2>Properties List</h2>
+     <div *ngFor="let property of paginatedProperties" class="property-card"> 
       <div class="property-info">
-        <h3>Property ID: {{ propertyitem.Id }}</h3>
-        <p>Address: {{ propertyitem.Address }}</p>
-        <p>Year Of Construction: {{ propertyitem.YearOfConstruction }}</p>
-        <p>Type Of Property: {{ propertyitem.TypeOfProperty }}</p>
-        <p>VAT: {{ propertyitem.Vat }}</p>
+        <h3>Property ID: {{ property.propertyIdentificationNumber }}</h3>
+        <p>Address: {{ property.address }}</p>
+        <p>Year Of Construction: {{ property.yearOfConstruction }}</p>
+        <p>Type Of Property: {{ property.propertyType }}</p>
+        <p>Owner Vat: {{ property.propertyOwnerVatNumber }}</p>
       </div>
     </div>
   </div>
-<div class="pagination">
+  <div class="pagination">
     <c-pagination aria-label="Page navigation example">
-        <li cPageItem [class.disabled]="currentPage === 1">
-          <a cPageLink (click)="changePage(currentPage-1)"[routerLink]>Previous</a>
-        </li>
-        <li cPageItem *ngFor="let page of totalPagesList">
-          <a cPageLink (click)="changePage(page)"[routerLink] [class.active]="page=== currentPage">{{page}}</a>
-        </li>
-        <li cPageItem [class.disabled]="currentPage === totalPages">
-          <a cPageLink (click)="changePage(currentPage+1)" [routerLink]>Next</a>
-        </li>
-      </c-pagination>
-</div>
-</div>
+      <li cPageItem [class.disabled]="currentPage === 1">
+        <a cPageLink (click)="changePage(currentPage-1)" [routerLink]>Previous</a>
+      </li>
+      <li cPageItem *ngFor="let page of totalPages">
+        <a cPageLink (click)="changePage(page)" [routerLink] [class.active]="page === currentPage">{{ page }}</a>
+      </li>
+      <li cPageItem [class.disabled]="currentPage === totalPages.length">
+        <a cPageLink (click)="changePage(currentPage + 1)" [routerLink]>Next</a>
+      </li>
+    </c-pagination>
+  </div>
+  
+</div> 

@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { PaginationService } from '../../../services/pagination.service';
 import { IRepairs } from '../../models/irepairs';
 import { RepairsService } from '../../../services/repairs.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   repairs: IRepairs[] = [];
   filteredRepairs: IRepairs[] = [];
   paginatedRepairs: IRepairs[] = [];
-
+  
   currentPage = 1;
   itemsPerPage = 3;
   totalPages = 0;

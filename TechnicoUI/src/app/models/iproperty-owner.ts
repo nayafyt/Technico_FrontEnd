@@ -1,5 +1,6 @@
 export interface IPropertyOwner {
-    vat: string;
+    id: any;
+    vatNumber: string;
     name: string;
     surname: string;
     address: string;

@@ -2,7 +2,18 @@
   <span class="navbar-brand">
     <span class="ml-2">Technico</span>
   </span>
-  <span class="home-nav" (click)="goToHome()">Home</span>
-  <span class="repair-nav" (click)="goToRepairs()">Repairs</span>
-  <span class="property-nav" (click)="goToPropertyOwners()">Property Owners</span>
+  <div class="navbar-links">
+    <span
+      class="home-nav"
+      [class.active]="isActive('/admin-homepage/home')"
+      (click)="goToHome()">Home</span>
+    <span
+      class="repair-nav"
+      [class.active]="isActive('/admin-homepage/repairs')"
+      (click)="goToRepairs()">Repairs</span>
+    <span
+      class="property-nav"
+      [class.active]="isActive('/admin-homepage/property-owners')"
+      (click)="goToPropertyOwners()">Properties</span>
+  </div>
 </nav>

@@ -4,10 +4,13 @@ import { IPropertyOwner } from '../../models/iproperty-owner';
 import { PropertyOwnerService } from '../../../services/property-owner.service';
 import { CommonModule } from '@angular/common';
 import { PaginationService } from '../../../services/pagination.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
+import { SearchService } from '../../../services/search.service';
 
 @Component({
   selector: 'app-user-search-page',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,HttpClientModule,RouterLink],
   templateUrl: './user-search-page.component.html',
   styleUrl: './user-search-page.component.scss',
 })
@@ -17,41 +20,48 @@ export class UserSearchPageComponent {
   paginatedPropertyOwner: IPropertyOwner[] = [];
 
   isLoading = true;
-
-  constructor(
-    private propertyOwnerService: PropertyOwnerService,
-    private paginationService: PaginationService
-  ) {}
-
   searchCriteria = {
-    vat: '',
+    vatNumber: '',
     email: '',
   };
-
   currentPage = 1;
   itemsPerPage = 3;
   totalPages = 0;
-
+  
+   
+  constructor(
+    private propertyOwnerService: PropertyOwnerService,
+    private paginationService: PaginationService,
+    private searchService : SearchService,
+    private http:HttpClient
+  ) {}
   ngOnInit(): void {
-    this.propertyOwnerService.getPropertyOwners().subscribe((data) => {
-      this.propertyOwner = data;
-      this.filteredPropertyOwner = [];
-      this.isLoading = false;
+    this.searchService.getPropertyOwners().subscribe({
+      next: (owners) => {
+        console.log('Fetched property owners:', owners);
+        this.propertyOwner = owners;
+        this.filteredPropertyOwner = [];
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching property owners:', error);
+        this.isLoading = false;
+      },
     });
   }
 
-  searchRepairs(): void {
-    const { vat, email } = this.searchCriteria;
+  searchOwners(): void {
+    const { vatNumber, email } = this.searchCriteria;
 
     let results = [...this.propertyOwner];
 
-    if (!vat && !email) {
+    if (!vatNumber && !email) {
       this.filteredPropertyOwner = [];
       return;
     }
 
-    if (vat) {
-      results = results.filter((user) => user.vat === vat);
+    if (vatNumber) {
+      results = results.filter((user) => user.vatNumber === vatNumber);
     }
 
     if (email) {
@@ -60,4 +70,6 @@ export class UserSearchPageComponent {
 
     this.filteredPropertyOwner = results;
   }
+
+  
 }

@@ -1,74 +1,48 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IPropertyItems } from '../../models/iproperty-items';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { PageItemDirective, PageLinkDirective, PaginationComponent } from '@coreui/angular';
+import { PropertiesService } from '../../../services/properties.service';
+import { PaginationService } from '../../../services/pagination.service';
 
 @Component({
   selector: 'app-property-owners',
   standalone: true,
-  imports: [CommonModule,PaginationComponent,PageItemDirective,PageLinkDirective,RouterLink],
+  imports: [CommonModule, PaginationComponent, PageItemDirective, PageLinkDirective, RouterLink],
   templateUrl: './property-owners.component.html',
-  styleUrl: './property-owners.component.scss'
+  styleUrls: ['./property-owners.component.scss'],
 })
-export class PropertyOwnersComponent implements OnInit{
-  properties: IPropertyItems[]=[];
-  paginatedProperties:IPropertyItems[]=[];
-  currentPage=1;
-  itemsPerPage=3;
-  totalPages=0;
+export class PropertyOwnersComponent implements OnInit {
+  properties: IPropertyItems[] = [];
+  paginatedProperties: IPropertyItems[] = [];
+  currentPage = 1;
+  itemsPerPage = 3;
+  totalPages: number[] = [];
+
+  constructor(private propertiesService: PropertiesService, private paginationService: PaginationService) {}
 
   ngOnInit(): void {
-    this.properties=[
-      {
-        Id:1,
-        Address: 'Kallithea 10',
-        YearOfConstruction: 1960,
-        TypeOfProperty: 'Apartment building',
-        Vat:'21746873'
+    this.propertiesService.getProperties().subscribe(
+      (data: IPropertyItems[]) => {
+        this.properties = data;
+        const paginationResult = this.paginationService.paginate(this.properties, this.currentPage, this.itemsPerPage);
+        this.paginatedProperties = paginationResult.paginatedItems;
+        this.totalPages = Array.from({ length: paginationResult.totalPages }, (_, i) => i + 1); 
       },
-      {
-        Id:2,
-        Address: 'Aigaleo 10',
-        YearOfConstruction: 1998,
-        TypeOfProperty: 'Apartment building',
-        Vat:'21746873'
-      },
-      {
-        Id:3,
-        Address: 'Alimos 10',
-        YearOfConstruction: 2000,
-        TypeOfProperty: 'Apartment building',
-        Vat:'21746873'
-      },
-      {
-        Id:4,
-        Address: 'Kaisariani 10',
-        YearOfConstruction: 2004,
-        TypeOfProperty: 'Apartment building',
-        Vat:'21746873'
-      },
-    ];
-    this.calculatePagination();
-  }
-
-  calculatePagination(): void{
-    this.totalPages = Math.ceil(this.properties.length / this.itemsPerPage);
-    this.paginatedProperties = this.properties.slice(
-      (this.currentPage - 1) * this.itemsPerPage,
-      this.currentPage * this.itemsPerPage
+      (error) => {
+        console.error('Error fetching properties:', error);
+      }
     );
   }
 
   changePage(page: number): void {
-    if (page < 1 || page > this.totalPages) {
+    if (page < 1 || page > this.totalPages.length) {
+      console.warn('Invalid page:', page);
       return;
     }
     this.currentPage = page;
-    this.calculatePagination();
-  }
-
-  get totalPagesList(): number[] {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    const paginationResult = this.paginationService.paginate(this.properties, this.currentPage, this.itemsPerPage);
+    this.paginatedProperties = paginationResult.paginatedItems;
   }
 }
