@@ -25,7 +25,9 @@ export class EditOwnerPageComponent implements OnInit {
     typeOfUser: '',
     id: ''
   };
-  userType = [{label: 'User', value: 0}, {label: 'Admin', value: 1}];
+  userType = [{
+    label: 'User', value: 0}, 
+   {label: 'Admin', value: 1}];
   isEditing = false;
   form!: FormGroup;
   

@@ -22,8 +22,8 @@ export function statusTypeToString(status: StatusType): string {
     }
   }
 
-  export function propertyTypeToString(propertyType: PropertyType): string {
-    switch (propertyType) {
+  export function propertyTypeToString(value: PropertyType): string {
+    switch (value) {
       case PropertyType.Detached: return 'detached';
       case PropertyType.Maisonet: return 'maisonet';
       case PropertyType.Apartment: return 'apartment';
@@ -60,12 +60,12 @@ export function statusTypeToString(status: StatusType): string {
     }
   }
 
-  export function stringToPropertyType(propertyType: string): PropertyType {
-    switch (propertyType) {
+  export function stringToPropertyType(value: string): PropertyType {
+    switch (value) {
       case 'detached': return PropertyType.Detached;
       case 'maisonet': return PropertyType.Maisonet;
       case 'apartment': return PropertyType.Apartment;
-      default: throw new Error(`Unknown status: ${propertyType}`);
+      default: throw new Error(`Unknown status: ${value}`);
     }
   }
 

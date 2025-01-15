@@ -24,15 +24,12 @@ export class PropertyOwnersComponent implements OnInit {
      {label: 'Maisonet', value: 1},
      {label: 'Apartment', value: 2}
     ];
-
-
   constructor(
     private propertiesService: PropertiesService, 
     private paginationService: PaginationService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.currentPage = Number(params['page']) || 1;
@@ -53,7 +50,6 @@ export class PropertyOwnersComponent implements OnInit {
       }
     );
   }
-
   changePage(page: number): void {
     if (page < 1 || page > this.totalPages.length) {
       console.warn('Invalid page:', page);

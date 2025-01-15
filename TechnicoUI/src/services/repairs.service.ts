@@ -20,12 +20,6 @@ export class RepairsService {
 
   constructor(private http: HttpClient) {}
 
-  // getRepairs(): Observable<IRepairs[]> {
-  //   return this.http
-  //     .get<ApiResponse2>(this.apiUrl)
-  //     .pipe(map((response) => response.value));
-  // }
-
   getRepairs(): Observable<IRepairs[]> {
     return this.http.get<ApiResponse2>(this.apiUrl).pipe(
       map((response) =>
@@ -45,13 +39,6 @@ export class RepairsService {
       )
     );
   }
-
-  // searchRepairsById(userId: string): Observable<IRepairs[]> {
-  //   let params = new HttpParams().set('vatNumber', userId); //userId
-  //   return this.http
-  //     .get<ApiResponse2>(`${this.apiUrl}/search-by-vat`, { params })
-  //     .pipe(map((response) => response.value));
-  // }
 
   searchRepairsByVatNumber(vatNumber: string): Observable<IRepairs[]> {
     let params = new HttpParams().set('vatNumber', vatNumber);
@@ -75,13 +62,6 @@ export class RepairsService {
         )
       );
   }
-
-  // searchRepairsByDate(dateTime: string): Observable<IRepairs[]> {
-  //   let params = new HttpParams().set('date', dateTime);
-  //   return this.http
-  //     .get<ApiResponse2>(`${this.apiUrl}/search-by-date`, { params })
-  //     .pipe(map((response) => response.value));
-  // }
 
   searchRepairsByDate(dateTime: string): Observable<IRepairs[]> {
     let params = new HttpParams().set('date', dateTime);
@@ -112,19 +92,14 @@ export class RepairsService {
     const repairToSend = {
       ...repairPayload,
       status: stringToStatusType(repair.status),
-      repairType: stringToRepairType(repair.repairType),
-      propertyItemDto: {
-        ...repair.propertyItemDto,
-        propertyType: stringToPropertyType(repair.propertyItemDto.propertyType),
-      },
     };
     console.log(1111, repairToSend);
 
     return this.http.post<ApiResponse>(this.apiUrl, repairToSend).pipe(
       map((response: any) => ({
         ...response,
-        status: statusTypeToString(response.status),
-        repairType: repairTypeToString(response.repairType),
+        // status: statusTypeToString(response.status),
+        // repairType: repairTypeToString(response.repairType),
         // propertyItemDto: {
         //   ...response.propertyItemDto,
         //   propertyType: propertyTypeToString(
