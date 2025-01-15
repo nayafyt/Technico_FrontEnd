@@ -1,86 +1,89 @@
 <div class="Container-wrapped">
-  <h2>Owner Management</h2>
-  <a routerLink="/admin-homepage/owner-management/create-owner-page" class="create-owner-button">
-    Create Owner
-  </a>
-  <a routerLink="/admin-homepage/owner-management/user-search-page" class="user-search-page-button">
-    User Search
-  </a>
+    <h2>Owner Management</h2>
+    <a routerLink="/admin-homepage/owner-management/create-owner-page" class="create-owner-button">
+      Create Owner
+    </a>
+    <a routerLink="/admin-homepage/owner-management/user-search-page" class="user-search-page-button">
+      User Search
+    </a>
 </div>
 
 <div class="owner-container">
-  <div *ngFor="let propertyOwners of paginatedPropertyOwners" class="owner-card">
-    <div class="owner-header">
-      <div class="owner-identifiers">
-        <div class="identifier-item">
-          <i class="fas fa-hashtag"></i>
-          <span class="identifier-label">Vat:</span>
-          <span class="identifier-value">{{ propertyOwners.vatNumber }}</span>
+    <div *ngFor="let propertyOwners of paginatedPropertyOwners" class="owner-card">
+        <div class="owner-header">
+            <div class="owner-identifiers">
+                <div class="identifier-item">
+                    <i class="fas fa-hashtag"></i>
+                    <span class="identifier-label">Vat:</span>
+                    <span class="identifier-value">{{ propertyOwners.vatNumber }}</span>
+                </div>
+            </div>
+            <div class="button-container">
+                <a [routerLink]="['/admin-homepage/owner-management/owner-details-page', propertyOwners.vatNumber]" class="infobtn">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a [routerLink]="['/admin-homepage/owner-management/edit-owner-page', propertyOwners.vatNumber]" class="editbtn">Edit</a>
+            </div>
         </div>
-      </div>
-      <div class="button-container">
-        <a [routerLink]="['/admin-homepage/owner-management/edit-owner-page', propertyOwners.vatNumber]" class="editbtn">Edit</a>
-      </div>
+
+        <div class="owner-details">
+            <div class="details-column">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="detail-content">
+                        <span class="detail-label">Fullname</span>
+                        <span class="detail-value">{{ propertyOwners.name }} {{ propertyOwners.surname }}</span>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+                    <div class="detail-content">
+                        <span class="detail-label">Address</span>
+                        <span class="detail-value">{{ propertyOwners.address }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-column">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="detail-content">
+                        <span class="detail-label">Phone</span>
+                        <span class="detail-value">{{ propertyOwners.phoneNumber }}</span>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="detail-content">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value">{{ propertyOwners.email }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="owner-details">
-      <div class="details-column">
-        <div class="detail-item">
-          <div class="detail-icon">
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="detail-content">
-            <span class="detail-label">Fullname</span>
-            <span class="detail-value">{{ propertyOwners.name }} {{ propertyOwners.surname }}</span>
-          </div>
-        </div>
-
-        <div class="detail-item">
-          <div class="detail-icon">
-            <i class="fas fa-location-dot"></i>
-          </div>
-          <div class="detail-content">
-            <span class="detail-label">Address</span>
-            <span class="detail-value">{{ propertyOwners.address }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="details-column">
-        <div class="detail-item">
-          <div class="detail-icon">
-            <i class="fas fa-phone"></i>
-          </div>
-          <div class="detail-content">
-            <span class="detail-label">Phone</span>
-            <span class="detail-value">{{ propertyOwners.phoneNumber }}</span>
-          </div>
-        </div>
-
-        <div class="detail-item">
-          <div class="detail-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="detail-content">
-            <span class="detail-label">Email</span>
-            <span class="detail-value">{{ propertyOwners.email }}</span>
-          </div>
-        </div>
-      </div>
+    <div class="pagination">
+        <c-pagination aria-label="Page navigation example">
+            <li cPageItem [class.disabled]="currentPage === 1">
+                <a cPageLink (click)="changePage(currentPage-1)" [routerLink]>Previous</a>
+            </li>
+            <li cPageItem *ngFor="let page of totalPagesList">
+                <a cPageLink (click)="changePage(page)" [routerLink] [class.active]="page === currentPage">{{page}}</a>
+            </li>
+            <li cPageItem [class.disabled]="currentPage === totalPages">
+                <a cPageLink (click)="changePage(currentPage+1)" [routerLink]>Next</a>
+            </li>
+        </c-pagination>
     </div>
-  </div>
-
-  <div class="pagination">
-    <c-pagination aria-label="Page navigation example">
-      <li cPageItem [class.disabled]="currentPage === 1">
-        <a cPageLink (click)="changePage(currentPage-1)" [routerLink]>Previous</a>
-      </li>
-      <li cPageItem *ngFor="let page of totalPagesList">
-        <a cPageLink (click)="changePage(page)" [routerLink] [class.active]="page === currentPage">{{page}}</a>
-      </li>
-      <li cPageItem [class.disabled]="currentPage === totalPages">
-        <a cPageLink (click)="changePage(currentPage+1)" [routerLink]>Next</a>
-      </li>
-    </c-pagination>
-  </div>
 </div>

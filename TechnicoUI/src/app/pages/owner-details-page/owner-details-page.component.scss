@@ -1,0 +1,65 @@
+.owner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.owner-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.owner-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+h3 {
+    font-size: 1.3rem;
+}
+
+.owner-header p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.property-items-section,
+.property-repairs-section {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.property-items-section h3,
+.property-repairs-section h3 {
+    margin-bottom: 10px;
+    color: #f55701;
+    border-bottom: 2px solid #f55701;
+    padding-bottom: 5px;
+}
+
+.property-list,
+.repair-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.property-list li,
+.repair-list li {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.property-list li strong,
+.repair-list li strong {
+    color: #333;
+}
