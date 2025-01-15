@@ -18,7 +18,7 @@ export class NavbarComponent {
   }
 
   goToHome(): void {
-    this.router.navigate(['/admin-homepage/home']);
+    this.router.navigate(['/admin-homepage/home']); 
   }
 
   goToRepairs(): void {
@@ -29,7 +29,15 @@ export class NavbarComponent {
     this.router.navigate(['/admin-homepage/property-owners']);
   }
 
-  isActive(url: string): boolean {
-    return this.activeLink === url;
+  goToOwnersManagment(): void {
+    this.router.navigate(['/admin-homepage/owner-management']);
+  }
+  goToLogin(): void{
+    this.router.navigate(['/login']);
+  }
+
+  isActive(route: string): boolean {
+    const currentUrl = this.router.url.split('?')[0];
+    return currentUrl === route;
   }
 }

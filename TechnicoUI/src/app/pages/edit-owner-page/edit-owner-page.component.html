@@ -1,44 +1,77 @@
 <div class="container-edit-owner">
     <h2>Edit Owner</h2>
   
-    <form>
-      <div class="form-group">
+    <form [formGroup]="form">
+      <div class="form-group"
+        [class.has-error]="form.get('vat')?.invalid&&form.get('vat')?.touched">
         <label for="vat">Vat Number</label>
-        <input type="text" id="vat" [(ngModel)]="propertyOwner.vatNumber" name="vat" required />
+        <input type="text" id="vat"
+        class="form-control"
+         formControlName="vatNumber" required />
       </div>
-      <div class="form-group">
+      <div class="form-group"
+      [class.has-error]="form.get('name')?.invalid&&form.get('name')?.touched">
         <label for="name">Name</label>
-        <input type="text" id="name" [(ngModel)]="propertyOwner.name" name="name" required />
+        <input type="text"
+         id="name" 
+         class="form-control"
+        formControlName="name" required />
       </div>
-      <div class="form-group">
+      <div class="form-group"
+      [class.has-error]="form.get('surname')?.invalid&&form.get('surname')?.touched">
         <label for="surname">Surname</label>
-        <input type="text" id="surname" [(ngModel)]="propertyOwner.surname" name="surname" required />
+        <input type="text" 
+        id="surname"
+        class="form-control"
+         formControlName="surname" required />
       </div>
-      <div class="form-group">
+      <div class="form-group"
+      [class.has-error]="form.get('address')?.invalid&&form.get('address')?.touched">
         <label for="address">Address</label>
-        <input type="text" id="address" [(ngModel)]="propertyOwner.address" name="address" required />
+        <input type="text" 
+        id="address" 
+        class="form-control"
+        formControlName="address" required />
       </div>
-      <div class="form-group">
+      <div class="form-group"
+      [class.has-error]="form.get('phoneNumber')?.invalid&&form.get('phoneNumber')?.touched">
         <label for="phoneNumber">Phone Number</label>
-        <input type="tel" id="phoneNumber" pattern="[0-9]{10}" [(ngModel)]="propertyOwner.phoneNumber" name="phoneNumber" required />
+        <input type="tel" 
+        id="phoneNumber" 
+        pattern="[0-9]{10}" 
+        class="form-control"
+        formControlName="phoneNumber" required />
       </div>
-      <div class="form-group">
+      <div class="form-group"
+      [class.has-error]="form.get('email')?.invalid&&form.get('email')?.touched">
         <label for="email">Email</label>
-        <input type="email" id="email"[(ngModel)]="propertyOwner.email" name="email" required />
+        <input type="email" 
+        id="email" 
+        class="form-control"
+        formControlName="email" required />
       </div>
-      <div class="form-group">
+      <div class="form-group"
+      [class.has-error]="form.get('password')?.invalid&&form.get('password')?.touched">
         <label for="password">Password</label>
-        <input type="password" id="password" [(ngModel)]="propertyOwner.password" name="password" required />
+        <input type="password"
+         id="password" 
+         class="form-control"
+         formControlName="password" required />
       </div>
-      <div class="form-group">
-        <label for="typeOfUser">Type of User</label>
-        <input type="text" id="typeOfUser" [(ngModel)]="propertyOwner.typeOfUser" name="typeOfUser" required />
+      <div class="form-group"
+      [class.has-error]="form.get('typeOfUser')?.invalid&&form.get('typeOfUser')?.touched">
+        <label for="typeOfUser">Type of User:</label>
+        <select id="typeOfUser" 
+        class="form-control"
+        formControlName="typeOfUser" required>
+          <option *ngFor="let type of typesOfUser" [value]="type">{{type}}</option>
+        </select>
       </div>
   
       <div class="btn-container">
-      <button class="savebtn"(click)="saveChanges()" type="submit">Save Changes</button>
-      <button class="deletebtn" type="submit" (click)="deletePropertyOwner()">Delete Owner</button>
-    </div>
+        <button class="savebtn" (click)="saveChanges()" type="submit">Save Changes</button>
+        <button class="deletebtn" type="button" (click)="deletePropertyOwner()">Delete Owner</button>
+      </div>
     </form>
-  </div>
+</div>
   

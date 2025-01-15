@@ -22,7 +22,7 @@
     </form>
   </div>
   <div class="noRepairs" *ngIf="!isLoading && filteredPropertyOwner.length === 0">
-    <p>No repairs found matching the criteria.</p>
+    <p>No User found matching the criteria.</p>
   </div>
   <div class="owner-container">
     <div class="outer-owner-card" *ngIf="!isLoading && filteredPropertyOwner.length > 0">
@@ -38,7 +38,7 @@
           <p>Phone Number: {{ propertyOwner.phoneNumber }}</p>
           <p>Email: {{ propertyOwner.email }}</p>
         </div>
-      <a [routerLink]="['/admin-homepage/edit-owner-page', propertyOwner.vatNumber]" class="editbtn">Edit</a>
+      <a [routerLink]="['/admin-homepage/owner-management/edit-owner-page', propertyOwner.vatNumber]" class="editbtn">Edit</a>
      <!-- <button class="deletebtn" type="submit" (click)="deletePropertyOwners()">Delete Owner</button> -->
     </div>
       </div>

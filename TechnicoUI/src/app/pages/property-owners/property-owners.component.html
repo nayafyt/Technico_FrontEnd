@@ -1,38 +1,74 @@
 <div class="container">
     <div class="Owner-container">
-    <p>Manage the Owners & the roperties efficiently with our user-friendly platform. <br> View, edit, and create property owners with ease. </p>
+    <p>Manage the Properties & the Owners efficiently with our user-friendly platform. <br> View, edit, and create property owners with ease. </p>
     <div class="btn-container">
       <a routerLink="/admin-homepage/owner-management" class="btn btn-property-management">
         Owner Management
       </a>
-       <!-- <button class="btn btn-owner-management" routerLink="/owner-management">
-            Owner Management
-        </button> -->
-           <button class="btn btn-property-management">Property Management</button>
     </div>    
     </div>
-<div class="container-properties" >
+<div class="container-properties">
     <h2>Properties List</h2>
-     <div *ngFor="let property of paginatedProperties" class="property-card"> 
-      <div class="property-info">
-        <h3>Property ID: {{ property.propertyIdentificationNumber }}</h3>
-        <p>Address: {{ property.address }}</p>
-        <p>Year Of Construction: {{ property.yearOfConstruction }}</p>
-        <p>Type Of Property: {{ property.propertyType }}</p>
-        <p>Owner Vat: {{ property.propertyOwnerVatNumber }}</p>
-      </div>
+    <div *ngFor="let property of paginatedProperties" class="property-card">
+        
+        <div class="property-header">
+            <div class="property-identifiers">
+                <div class="identifier-item">
+                    <i class="fas fa-hashtag"></i>
+                    <span class="identifier-label">Property ID:</span>
+                    <span class="identifier-value">{{ property.propertyIdentificationNumber }}</span>
+                </div>
+                <div class="identifier-item">
+                    <i class="fas fa-user"></i>
+                    <span class="identifier-label">Owner VAT:</span>
+                    <span class="identifier-value">{{ property.propertyOwnerVatNumber }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Property Details Section -->
+        <div class="property-details">
+            <div class="detail-item">
+                <div class="detail-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="detail-content">
+                    <span class="detail-label">Type Of Property</span>
+                    <span class="detail-value">{{ getPropertyTypeString(+property.propertyType) }}</span>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="detail-content">
+                    <span class="detail-label">Address</span>
+                    <span class="detail-value">{{ property.address }}</span>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="detail-content">
+                    <span class="detail-label">Year Of Construction</span>
+                    <span class="detail-value">{{ property.yearOfConstruction }}</span>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
   <div class="pagination">
     <c-pagination aria-label="Page navigation example">
       <li cPageItem [class.disabled]="currentPage === 1">
-        <a cPageLink (click)="changePage(currentPage-1)" [routerLink]>Previous</a>
+        <a cPageLink (click)="changePage(currentPage-1)" [routerLink]="[]" [queryParams]="{page: currentPage-1}" queryParamsHandling="merge">Previous</a>
       </li>
       <li cPageItem *ngFor="let page of totalPages">
-        <a cPageLink (click)="changePage(page)" [routerLink] [class.active]="page === currentPage">{{ page }}</a>
+        <a cPageLink (click)="changePage(page)" [routerLink]="[]" [queryParams]="{page: page}" queryParamsHandling="merge" [class.active]="page === currentPage">{{ page }}</a>
       </li>
       <li cPageItem [class.disabled]="currentPage === totalPages.length">
-        <a cPageLink (click)="changePage(currentPage + 1)" [routerLink]>Next</a>
+        <a cPageLink (click)="changePage(currentPage + 1)" [routerLink]="[]" [queryParams]="{page: currentPage+1}" queryParamsHandling="merge">Next</a>
       </li>
     </c-pagination>
   </div>

@@ -7,6 +7,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  max-width: 1000px;
   margin-top: 40px;
   flex-wrap: wrap; 
   font-size: larger;
@@ -18,7 +19,7 @@
 }
 
 .container-repairs {
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   text-align: left;
@@ -45,7 +46,7 @@ h2 {
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 1300px;
+  max-width: 1000px;
   margin: 10px 0;
 }
 

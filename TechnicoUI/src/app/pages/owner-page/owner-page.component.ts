@@ -4,6 +4,8 @@ import { PropertyOwnerService } from '../../../services/property-owner.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { PageItemDirective, PageLinkDirective, PaginationComponent } from '@coreui/angular';
+import { tap } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-owner-page',
@@ -19,25 +21,31 @@ export class OwnerPageComponent implements OnInit {
   itemsPerPage = 3;
   totalPages = 0;
 
-  constructor(private propertyOwnerService: PropertyOwnerService) {} 
+  constructor(
+    private propertyOwnerService: PropertyOwnerService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {} 
   //.next method
 
   ngOnInit(): void {
-    this.propertyOwnerService.getPropertyOwners().subscribe(
-      (data) => {
-        console.log('Fetched property owners:', data);
-        this.propertyOwners = data;
-        this.calculatePagination();
-      },
-      (error) => {
-        console.error('Error fetching property owners:', error);
-      }
-    );
+    this.route.queryParams.subscribe(params => {
+      this.currentPage = parseInt(params['page']) || 1;
+      
+      this.propertyOwnerService.getPropertyOwners().pipe(
+        tap({
+          next: (data) => {
+            console.log('Fetched property owners:', data);
+            this.propertyOwners = data;
+            this.calculatePagination();
+          },
+          error: (error) => {
+            console.error('Error fetching property owners:', error);
+          }
+        })
+      ).subscribe();
+    });
   }
-
-
-  
-  
 
   calculatePagination(): void {
     this.totalPages = Math.ceil(this.propertyOwners.length / this.itemsPerPage);
@@ -54,6 +62,12 @@ export class OwnerPageComponent implements OnInit {
       console.warn('Invalid page:', page);
       return;
     }
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page: page },
+      queryParamsHandling: 'merge'
+    });
+    
     this.currentPage = page;
     this.calculatePagination();
   }

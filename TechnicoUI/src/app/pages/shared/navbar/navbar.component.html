@@ -15,5 +15,13 @@
       class="property-nav"
       [class.active]="isActive('/admin-homepage/property-owners')"
       (click)="goToPropertyOwners()">Properties</span>
+      <span
+      class="owner-nav"
+      [class.active]="isActive('/admin-homepage/owner-management')"
+      (click)="goToOwnersManagment()">Owners</span>
+      <span
+      class="logout-nav"
+      [class.active]="isActive('/login')"
+      (click)="goToLogin()">Logout</span>
   </div>
 </nav>
