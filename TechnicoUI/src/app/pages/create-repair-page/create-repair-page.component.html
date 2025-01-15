@@ -1,108 +1,122 @@
 <div class="container-create-repair">
-    <h2>Create Repair</h2>
-  
-    <form (ngSubmit)="onSubmit()" #repairForm="ngForm">
-      <div class="form-group">
-        <label for="repairType">Repair Type</label>
-        <input
-          type="text"
-          id="repairType"
-          [(ngModel)]="repair.repairType"
-          name="repairType"
-          required
-          #repairType="ngModel"
-        />
-        <div *ngIf="repairType.invalid && repairType.touched" class="error">
-          Repair Type is required.
-        </div>
+  <h2>Create Repair</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="repairType">Repair Type</label>
+      <select id="repairType" formControlName="repairType" required>
+        <option value="" disabled selected>Select a repair type</option>
+        <option
+          *ngFor="let type of repairType"
+          [value]="type.value"
+          [label]="type.label"
+        >
+          {{ type }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          form.get('repairType')?.invalid &&
+          form.get('repairType')?.touched
+        "
+        class="error"
+      >
+        Repair Type is required.
       </div>
-  
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea
-          id="description"
-          [(ngModel)]="repair.description"
-          name="description"
-          required
-          #description="ngModel"
-        ></textarea>
-        <div *ngIf="description.invalid && description.touched" class="error">
-          Description is required.
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="address">Address</label>
-        <input
-          type="text"
-          id="address"
-          [(ngModel)]="repair.address"
-          name="address"
-          required
-          #address="ngModel"
-        />
-        <div *ngIf="address.invalid && address.touched" class="error">
-          Address is required.
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="sceduleDate">Scheduled Date</label>
-        <input
-          type="date"
-          id="sceduleDate"
-          [(ngModel)]="repair.dateTime"
-          name="sceduleDate"
-          required
-          #sceduleDate="ngModel"
-        />
-        <div *ngIf="sceduleDate.invalid && sceduleDate.touched" class="error">
-          Scheduled Date is required.
-        </div>
-      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="cost">Cost</label>
-        <input
-          type="text"
-          id="cost"
-          [(ngModel)]="repair.cost"
-          name="cost"
-          required
-          #cost="ngModel"
-        />
-        <div *ngIf="cost.invalid && cost.touched" class="error">
-          Repair Cost is required.
-        </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        required
+      ></textarea>
+      <div
+        *ngIf="
+          form.get('description')?.invalid && form.get('description')?.touched
+        "
+        class="error"
+      >
+        Description is required.
       </div>
+    </div>
 
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" id="address" formControlName="address" required />
+      <div
+        *ngIf="form.get('address')?.invalid && form.get('address')?.touched"
+        class="error"
+      >
+        Address is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="sceduleDate">Scheduled Date</label>
+      <input type="date" id="sceduleDate" formControlName="dateTime" required />
+      <div
+        *ngIf="form.get('dateTime')?.invalid && form.get('dateTime')?.touched"
+        class="error"
+      >
+        Scheduled Date is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cost">Cost</label>
+      <input
+        type="text"
+        id="cost"
+        formControlName="cost"
+        required
+        pattern="^[0-9]+$"
+      />
+      <div
+        *ngIf="form.get('cost')?.invalid && form.get('cost')?.touched"
+        class="error"
+      >
+        Repair Cost is required and must be a number.
+      </div>
+    </div>
+    <ng-container [formGroupName]="'propertyItemDto'">
       <div class="form-group">
-        <label for="propertyIdentificationNumber">Property Identification Number</label>
+        <label for="propertyIdentificationNumber"
+          >Property Identification Number</label
+        >
         <input
           type="text"
           id="propertyIdentificationNumber"
-          [(ngModel)]="repair.propertyItemDto.propertyIdentificationNumber"
-          name="propertyIdentificationNumber"
+          formControlName="propertyIdentificationNumber"
           required
-          #propertyIdentificationNumber="ngModel"
         />
-        <div *ngIf="propertyIdentificationNumber.invalid && propertyIdentificationNumber.touched" class="error">
+        <div
+          *ngIf="
+            form.get('propertyIdentificationNumber')?.invalid &&
+            form.get('propertyIdentificationNumber')?.touched
+          "
+          class="error"
+        >
           Property Identification Number is required.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="address">Address 2</label>
+        <label for="propertyAddress">Property Address</label>
         <input
           type="text"
-          id="address"
-          [(ngModel)]="repair.propertyItemDto.address"
-          name="address"
+          id="propertyAddress"
+          formControlName="propertyAddress"
           required
-          #address="ngModel"
         />
-        <div *ngIf="address.invalid && address.touched" class="error">
-          Address 2 is required.
+        <div
+          *ngIf="
+            form.get('propertyAddress')?.invalid &&
+            form.get('propertyAddress')?.touched
+          "
+          class="error"
+        >
+          Property Address is required.
         </div>
       </div>
 
@@ -111,46 +125,64 @@
         <input
           type="text"
           id="propertyOwnerVatNumber"
-          [(ngModel)]="repair.propertyItemDto.propertyOwnerVatNumber"
-          name="propertyOwnerVatNumber"
+          formControlName="propertyOwnerVatNumber"
           required
-          #propertyOwnerVatNumber="ngModel"
         />
-        <div *ngIf="propertyOwnerVatNumber.invalid && propertyOwnerVatNumber.touched" class="error">
+        <div
+          *ngIf="
+            form.get('propertyOwnerVatNumber')?.invalid &&
+            form.get('propertyOwnerVatNumber')?.touched
+          "
+          class="error"
+        >
           Property VAT Number is required.
         </div>
       </div>
 
       <div class="form-group">
         <label for="propertyType">Property Type</label>
-        <input
-          type="text"
-          id="propertyType"
-          [(ngModel)]="repair.propertyItemDto.propertyType"
-          name="propertyType"
-          required
-          #propertyType="ngModel"
-        />
-        <div *ngIf="propertyType.invalid && propertyType.touched" class="error">
+        <select id="propertyType" formControlName="propertyType" required>
+          <option value="" disabled selected>Select a property type</option>
+          <option
+            *ngFor="let type of propertyType"
+            [value]="type.value"
+            [label]="type.label"
+          >
+            {{ type }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            form.get('propertyType')?.invalid &&
+            form.get('propertyType')?.touched
+          "
+          class="error"
+        >
           Property Type is required.
         </div>
       </div>
-  
+
       <div class="form-group">
         <label for="yearOfConstruction">Year Of Construction</label>
         <input
           type="text"
           id="yearOfConstruction"
-          [(ngModel)]="repair.propertyItemDto.yearOfConstruction"
-          name="yearOfConstruction"
+          formControlName="yearOfConstruction"
           required
-          #yearOfConstruction="ngModel"
+          pattern="^[0-9]{4}$"
         />
-        <div *ngIf="yearOfConstruction.invalid && yearOfConstruction.touched" class="error">
-          Year Of Construction is required.
+        <div
+          *ngIf="
+            form.get('yearOfConstruction')?.invalid &&
+            form.get('yearOfConstruction')?.touched
+          "
+          class="error"
+        >
+          Year Of Construction is required and must be a 4-digit year.
         </div>
       </div>
-  
-      <button type="submit" [disabled]="repairForm.invalid">Submit</button>
-    </form>
-  </div>
+    </ng-container>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>
