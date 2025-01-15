@@ -19,7 +19,7 @@ export enum PropertyType {
     Apartment = 2
 }
 
-export enum UserType {
+export enum typeOfUser {
     User = 0,
     Admin = 1
 }

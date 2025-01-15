@@ -87,4 +87,24 @@ export class PropertyOwnerService {
       })
     );
   }
+
+  // Function to fetch owner details by VAT number
+  getOwnerByVat(vatNumber: string): Observable<any> {
+    const url = `${this.apiUrl}/${vatNumber}`;
+    console.log("FETCH WITH VAT",vatNumber," ",this.http.get<ApiResponse>(this.apiUrl));
+    return this.http.get<ApiResponse>(url).pipe(
+      map((response) => {
+        if (response.statusCode === 200) {
+          console.log("RESPONSE",response.value);
+          return response.value;
+        } else {
+          return null;
+        }
+      }),
+      catchError((error) => {
+        console.error('Error fetching owner by VAT:', error);
+        return throwError(() => new Error('Failed to fetch owner by VAT'));})
+    );
+  }
+
 }

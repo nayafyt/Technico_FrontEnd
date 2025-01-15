@@ -10,13 +10,13 @@ import {
   stringToStatusType,
   stringToPropertyType,
 } from '../utils/enum-utils';
-import { RepairType, StatusType, PropertyType, UserType } from '../enums/enums';
+import { RepairType, StatusType, PropertyType, typeOfUser  } from '../enums/enums';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RepairsService {
-  private apiUrl = 'http://localhost:5074/api/PropertyRepairs';
+  private apiUrl = 'https://localhost:7063/api/PropertyRepairs';
 
   constructor(private http: HttpClient) {}
 

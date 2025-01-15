@@ -1,4 +1,4 @@
-import { PropertyType, RepairType, StatusType, UserType } from "../enums/enums";
+import { PropertyType, RepairType, StatusType, typeOfUser  } from "../enums/enums";
 
 
 export function statusTypeToString(status: StatusType): string {
@@ -31,13 +31,13 @@ export function statusTypeToString(status: StatusType): string {
     }
   }
 
-  // export function userTypeToString(userType: UserType): string {
-  //   switch (userType) {
-  //     case UserType.User: return 'user';
-  //     case UserType.Admin: return 'admin';
-  //     default: return 'unknown';
-  //   }
-  // }
+  export function userTypeToString(userType: typeOfUser ): string {
+    switch (userType) {
+      case typeOfUser .User: return 'user';
+      case typeOfUser .Admin: return 'admin';
+      default: return 'unknown';
+    }
+  }
   
   export function stringToStatusType(status: string): StatusType {
     switch (status) {

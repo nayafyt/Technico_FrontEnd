@@ -19,21 +19,17 @@ export class PropertyOwnersComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 3;
   totalPages: number[] = [];
-
-  propertyTypes = {
-    0: 'Detached house',
-    1: 'Maisonet',
-    2: 'Apartment',
-    
-  } as const;
-
+  propertyTypes = [
+     {label: 'Detached house', value: 0},
+     {label: 'Maisonet', value: 1},
+     {label: 'Apartment', value: 2}
+    ];
   constructor(
     private propertiesService: PropertiesService, 
     private paginationService: PaginationService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.currentPage = Number(params['page']) || 1;
@@ -54,7 +50,6 @@ export class PropertyOwnersComponent implements OnInit {
       }
     );
   }
-
   changePage(page: number): void {
     if (page < 1 || page > this.totalPages.length) {
       console.warn('Invalid page:', page);
@@ -67,8 +62,9 @@ export class PropertyOwnersComponent implements OnInit {
       preserveFragment: true
     });
   }
-
-  getPropertyTypeString(type: number): string {
-    return this.propertyTypes[type as keyof typeof this.propertyTypes] || 'Unknown';
-  }
+  getpropertyTypes(type: string): string { 
+  const numericType = Number(type); 
+  const foundType = this.propertyTypes.find(pt => pt.value === numericType);
+   return foundType ? foundType.label : 'Unknown';
+ } 
 }

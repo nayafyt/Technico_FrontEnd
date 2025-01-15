@@ -158,37 +158,74 @@
     font-weight: 500;
     
   }
-  .button-container {
-    margin-left: auto;
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 3px;
+.button-container {
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 3px;
+  gap: 10px;
 
-    .editbtn {
-      padding: 0.5rem 1.5rem;
-      font-size: 1rem;
-      color: #f55701;
-      background-color: #f8f9fa;
-      border: 1px solid #f55701;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.2s, color 0.2s;
-      display: inline-block;
-      text-decoration: none;
-      margin-left: 13px;
+  .editbtn {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    color: #f55701;
+    background-color: #f8f9fa;
+    border: 1px solid #f55701;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, color 0.2s;
+    display: inline-block;
+    text-decoration: none;
+    margin: 0px;
 
-      &:hover {
-        transform: scale(1);
-        background-color: #f55701;
-        color: #ffffff;
-        opacity: 1;
-      }
+    &:hover {
+      transform: scale(1);
+      background-color: #f55701;
+      color: #ffffff;
+      opacity: 1;
+    }
 
-      &:active {
-        transform: scale(0.95);
-      }
+    &:active {
+      transform: scale(0.95);
     }
   }
+
+  .infobtn {
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #f55701;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    margin: 0;
+  }
+
+  .infobtn i {
+    font-size: 1.2rem;
+    color: #f55701;
+  }
+
+  .infobtn:hover {
+    transform: scale(1);
+    background-color: #f55701;
+    border-radius: 50%;
+    color: #ffffff;
+  }
+
+  .infobtn:hover i {
+    color: #ffffff;
+  }
+
+  .infobtn:active {
+    transform: scale(0.95);
+  }
+}
   .pagination {
     display: flex;
     justify-content: center;
