@@ -11,7 +11,7 @@
         formControlName="vatNumber"
         name="vat"
         required
-        pattern="[0-9A-Za-z]{1,10}" 
+        pattern="[0-9]{1,10}" 
         class="form-control"
       />
       <div *ngIf="getControlError('vat', 'required')">
@@ -47,7 +47,7 @@
         required
       />
       <div *ngIf="getControlError('surname', 'required')">
-        SurName is required
+        Surname is required
       </div>
     </div>
 

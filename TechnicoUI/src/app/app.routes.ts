@@ -14,6 +14,7 @@ import { UserSearchPageComponent } from './pages/user-search-page/user-search-pa
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { OwnerDetailsPageComponent } from './pages/owner-details-page/owner-details-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -34,6 +35,7 @@ export const routes: Routes = [
       { path: 'owner-management', component: OwnerPageComponent },
       { path: 'owner-management/create-owner-page', component: CreateOwnerComponent },
       { path: 'owner-management/edit-owner-page/:vat', component: EditOwnerPageComponent },
+      { path: 'owner-management/owner-details-page/:vat', component: OwnerDetailsPageComponent },
       { path: 'owner-management/user-search-page', component: UserSearchPageComponent },
     ],
   },
