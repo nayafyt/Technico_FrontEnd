@@ -19,13 +19,12 @@ export class PropertyOwnersComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 3;
   totalPages: number[] = [];
+  propertyTypes = [
+     {label: 'Detached house', value: 0},
+     {label: 'Maisonet', value: 1},
+     {label: 'Apartment', value: 2}
+    ];
 
-  propertyTypes = {
-    0: 'Detached house',
-    1: 'Maisonet',
-    2: 'Apartment',
-    
-  } as const;
 
   constructor(
     private propertiesService: PropertiesService, 
@@ -67,8 +66,9 @@ export class PropertyOwnersComponent implements OnInit {
       preserveFragment: true
     });
   }
-
-  getPropertyTypeString(type: number): string {
-    return this.propertyTypes[type as keyof typeof this.propertyTypes] || 'Unknown';
-  }
+  getpropertyTypes(type: string): string { 
+  const numericType = Number(type); 
+  const foundType = this.propertyTypes.find(pt => pt.value === numericType);
+   return foundType ? foundType.label : 'Unknown';
+ } 
 }

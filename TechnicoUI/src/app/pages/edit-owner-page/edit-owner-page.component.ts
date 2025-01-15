@@ -25,7 +25,7 @@ export class EditOwnerPageComponent implements OnInit {
     typeOfUser: '',
     id: ''
   };
-  typesOfUser = ['User', 'Admin'];
+  userType = [{label: 'User', value: 0}, {label: 'Admin', value: 1}];
   isEditing = false;
   form!: FormGroup;
   
@@ -44,7 +44,7 @@ export class EditOwnerPageComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      typeOfUser: ['', Validators.required]
+      userType: ['', Validators.required]
     });
   }
 
@@ -70,7 +70,10 @@ export class EditOwnerPageComponent implements OnInit {
         const owner = owners.find((o) => o.vatNumber === vat);
         if (owner) {
           this.propertyOwner = owner;
+          console.log(this.propertyOwner);
+          
           this.form.patchValue(this.propertyOwner);
+          // this.form.get("typeOfUser")?.setValue(0);
           console.log('Loaded property owner:', owner); 
         } else {
           console.error('Owner not found');
@@ -82,12 +85,15 @@ export class EditOwnerPageComponent implements OnInit {
     });
   }
   saveChanges(): void {
+    console.log(this.form.value);
     if (this.form.valid) {
       const updatedOwner: IPropertyOwner = {
         ...this.form.value,
+        userType: Number(this.form.get("userType")?.value),
         id: this.propertyOwner.id  
       };
-
+      console.error(updatedOwner);
+      
       this.propertyOwnerService.updatePropertyOwner(updatedOwner).subscribe({
         next: (response) => {
           console.log('Property owner updated successfully:', response);
