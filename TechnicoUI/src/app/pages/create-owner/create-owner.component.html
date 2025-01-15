@@ -1,51 +1,53 @@
 <div class="container-create-owner">
   <h2>Create Owner</h2>
 
-  <form (ngSubmit)="onSubmit()" #propertyOwnersForm="ngForm">
-    <div class="form-group">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group"
+      [class.has-error]="form.get('vat')?.invalid&&form.get('vat')?.touched">
       <label for="vat">VAT Number</label>
       <input
         type="text"
         id="vat"
-        [(ngModel)]="propertyOwner.vatNumber"
+        formControlName="vatNumber"
         name="vat"
         required
         pattern="[0-9A-Za-z]{1,10}" 
-        #vat="ngModel"
+        class="form-control"
       />
-      <div *ngIf="vat.invalid && vat.touched" class="error">
-        <div *ngIf="vat.errors?.['required']">VAT Number is required.</div>
-        <div *ngIf="vat.errors?.['pattern']">Invalid VAT Number format.</div>
+      <div *ngIf="getControlError('vat', 'required')">
+        Vat is required
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group"
+      [class.has-error]="form.get('name')?.invalid&&form.get('name')?.touched">
       <label for="name">Name</label>
       <input
         type="text"
         id="name"
-        [(ngModel)]="propertyOwner.name"
+        formControlName="name"
         name="name"
         required
-        #name="ngModel"
+        class="form-control"
       />
-      <div *ngIf="name.invalid && name.touched" class="error">
-        Name is required.
+      <div *ngIf="getControlError('name', 'required')">
+        Name is required
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group"
+    [class.has-error]="form.get('surname')?.invalid&&form.get('surname')?.touched">
       <label for="surname">Surname</label>
       <input
         type="text"
         id="surname"
-        [(ngModel)]="propertyOwner.surname"
+        formControlName="surname"
         name="surname"
+        class="form-control"
         required
-        #surname="ngModel"
       />
-      <div *ngIf="surname.invalid && surname.touched" class="error">
-        Surname is required.
+      <div *ngIf="getControlError('surname', 'required')">
+        SurName is required
       </div>
     </div>
 
@@ -54,13 +56,13 @@
       <input
         type="text"
         id="address"
-        [(ngModel)]="propertyOwner.address"
+        formControlName="address"
         name="address"
         required
-        #address="ngModel"
+        class="form-control"
       />
-      <div *ngIf="address.invalid && address.touched" class="error">
-        Address is required.
+      <div *ngIf="getControlError('address', 'required')">
+        Address is required
       </div>
     </div>
 
@@ -68,15 +70,18 @@
       <label for="phoneNumber">Phone Number</label>
       <input
         type="text"
-        pattern="[0-9]{10}"
         id="phoneNumber"
-        [(ngModel)]="propertyOwner.phoneNumber"
+        formControlName="phoneNumber"
         name="phoneNumber"
         required
-        #phoneNumber="ngModel"
+        pattern="[0-9]{10}"
+        class="form-control"
       />
-      <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="error">
-        Phone Number is required.
+      <div *ngIf="getControlError('phoneNumber', 'required')">
+        Phone Number is required
+      </div>
+      <div *ngIf="getControlError('phoneNumber', 'pattern')">
+        Please enter a valid 10-digit phone number
       </div>
     </div>
 
@@ -85,16 +90,17 @@
       <input
         type="email"
         id="email"
-        [(ngModel)]="propertyOwner.email"
+        formControlName="email"
         name="email"
         required
         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-        #email="ngModel"
+        class="form-control"
       />
-      <div *ngIf="email.invalid && email.touched" class="error">
-        <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
-        <div *ngIf="email.errors?.['required']">Email is required.</div>
-        
+      <div *ngIf="getControlError('email', 'required')">
+        Email is required
+      </div>
+      <div *ngIf="getControlError('email', 'pattern')">
+        Please enter a valid email address
       </div>
     </div>
 
@@ -103,33 +109,28 @@
       <input
         type="password"
         id="password"
-        [(ngModel)]="propertyOwner.password"
+        formControlName="password"
         name="password"
         required
-        #password="ngModel"
+        class="form-control"
         autocomplete="off"
       />
-      <div *ngIf="password.invalid && password.touched" class="error">
-        Password is required.
+      <div *ngIf="getControlError('password', 'required')">
+        Password is required
       </div>
     </div>
 
     <div class="form-group">
       <label for="typeOfUser">Type of User</label>
-      <input
-        type="text"
-        id="typeOfUser"
-        [(ngModel)]="propertyOwner.typeOfUser"
-        name="typeOfUser"
-        required
-        #typeOfUser="ngModel"
-        autocomplete="off"
-      />
-      <div *ngIf="typeOfUser.invalid && typeOfUser.touched" class="error">
-        Type of user is required.
-      </div>
+      <select 
+        id="typeOfUser" 
+        formControlName="typeOfUser"
+        name="typeOfUser" 
+        class="form-control">
+        <option *ngFor="let type of typesOfUser" [value]="type">{{type}}</option>
+      </select>
     </div>
 
-    <button type="submit" [disabled]="propertyOwnersForm.invalid">Submit</button>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
   </form>
 </div>
