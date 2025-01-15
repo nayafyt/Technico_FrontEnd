@@ -8,7 +8,7 @@ import { ApiResponse } from '../app/models/iproperty-items';
   providedIn: 'root',
 })
 export class PropertyOwnerService {
-  private apiUrl = 'http://localhost:7063/api/PropertyOwners'; 
+  private apiUrl = 'https://localhost:7063/api/PropertyOwners'; 
 
   constructor(private http: HttpClient) {}
 
