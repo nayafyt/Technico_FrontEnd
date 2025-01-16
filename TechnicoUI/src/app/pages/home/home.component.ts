@@ -1,17 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PaginationService } from '../../../services/pagination.service';
-import { IRepairsOngoing } from '../../models/irepairsOngoing';
-import { RepairsOngoingService } from '../../../services/repairs-ongoing.service';
+import { IRepairs } from '../../models/irepairs';
+import { RepairsService } from '../../../services/repairs.service';
 import { ReactiveFormsModule } from '@angular/forms';
-
-export interface IUsers {
-  firstname: string;
-  lastname: string;
-  moreThanTwoYearsExperience: boolean;
-  preferredLanguage: string;
-  favoriteLanguage: string;
-}
 
 @Component({
   selector: 'app-home',
@@ -21,23 +13,34 @@ export interface IUsers {
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  repairs: IRepairsOngoing[] = [];
-  filteredRepairs: IRepairsOngoing[] = [];
-  paginatedRepairs: IRepairsOngoing[] = [];
+  repairs: IRepairs[] = [];
+  filteredRepairs: IRepairs[] = [];
+  paginatedRepairs: IRepairs[] = [];
+  
   currentPage = 1;
   itemsPerPage = 3;
   totalPages = 0;
 
   constructor(
-    private repairsOngoing: RepairsOngoingService,
+    private repairsService: RepairsService,
     private paginationService: PaginationService
   ) {}
 
   ngOnInit(): void {
-    this.repairsOngoing.getRepairs().subscribe((data) => {
-      this.repairs = data;
-      this.filteredRepairs = [...this.repairs];
-      this.updatePagination();
+    this.repairsService.getRepairs().subscribe({
+      next: (data: IRepairs[]) => {
+        const filteredData = data
+        .filter(
+          (item) => item.status === 'in progress'
+        );
+        console.log('Filtered repairs:', filteredData);
+        this.repairs = filteredData;
+        this.filteredRepairs = [...this.repairs];
+        this.updatePagination();
+      },
+      error: (err) => {
+        console.error('Failed to fetch repairs:', err.error);
+      },
     });
   }
 
@@ -62,16 +65,4 @@ export class HomeComponent implements OnInit {
   get totalPagesList(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
-
-
-
-
-
-
-
-
-
-
-
-
 }

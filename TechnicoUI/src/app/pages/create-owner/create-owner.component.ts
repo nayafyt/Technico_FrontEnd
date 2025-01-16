@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { PropertyOwnerService } from '../../../services/property-owner.service';
 
 @Component({
-  selector: 'app-create-owner',
+  selector: 'app-create-owner', 
   standalone: true,
   imports: [CommonModule, FormsModule,ReactiveFormsModule],
   templateUrl: './create-owner.component.html',
@@ -15,19 +15,10 @@ import { PropertyOwnerService } from '../../../services/property-owner.service';
 })
 export class CreateOwnerComponent implements OnInit {
   form!: FormGroup;
-  // propertyOwner: IPropertyOwner = {
-  //   vatNumber: '',
-  //   name: '',
-  //   surname: '',
-  //   address: '',
-  //   phoneNumber: 0,
-  //   email: '',
-  //   password: '',
-  //   typeOfUser: '',
-  //   id: ''
-  // };
- 
-  typesOfUser = ['User','Admin']
+  userType = [{
+    label: 'User', value: 0}, 
+    {label: 'Admin', value: 1}
+  ];
 
   constructor(
     private router: Router,
@@ -37,23 +28,25 @@ export class CreateOwnerComponent implements OnInit {
   ) {
     this.form = this.fb.group({
      vatNumber: ['', [Validators.required, Validators.pattern('[0-9A-Za-z]{1,10}')]],
-      name: ['', [Validators.required,Validators.pattern('^[a-z]+$')]],
-      surname: ['', [Validators.required,Validators.pattern('^[a-z]+$')]],
-      address: ['', [Validators.required,Validators.pattern('^[a-z0-9\s]+$')]],
+      name: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+      surname: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+      address: ['', [Validators.required,Validators.pattern('^[a-zA-Z0-9\s]+$')]],
       phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      typeOfUser: ['', Validators.required]
+      userType: ['', Validators.required]
     });
   }
-
   ngOnInit(): void {
     console.log('CreateOwnerComponent initialized');
   }
   onSubmit(): void {
+    console.log(this.form.value);
+    
     if (this.form.valid) {
       const propertyOwner: IPropertyOwner = {
         ...this.form.value,
+        userType: Number(this.form.get("userType")?.value),
         id: '' 
       };
 

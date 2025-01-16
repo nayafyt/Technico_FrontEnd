@@ -18,7 +18,7 @@ export class SearchResultsPageComponent implements OnInit {
   searchCriteria = {
     startDate: '',
     endDate: '',
-    userId: '',
+    vatNumber: '',
   };
   currentPage = 1;
   itemsPerPage = 3;
@@ -33,17 +33,35 @@ export class SearchResultsPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const startDate = params['startDate'];
-      const userId = params['userId'];
+      const vatNumber = params['vatNumber'];
 
-      if ((startDate != '') || (userId != '')) {
-        this.repairsService.getRepairs().subscribe((data) => {
-          this.filteredRepairs = data.filter((repair) => {
-            const matchStartDate = !startDate || new Date(repair.date).getTime() === new Date(startDate).getTime();
-            const matchUserId = !userId || repair.userId === userId;
-            return matchStartDate && matchUserId;
-          });
-          this.isLoading = false;
-          this.updatePagination();
+      if (startDate) {
+        this.repairsService.searchRepairsByDate(startDate).subscribe({
+          next: (data) => {
+            this.filteredRepairs = data;
+            this.isLoading = false;
+            this.updatePagination();
+          },
+          error: (error) => {
+            if (error.status === 404) {
+              this.isLoading = false;
+              this.updatePagination();
+            }
+          },
+        });
+      } else if (vatNumber) {
+        this.repairsService.searchRepairsByVatNumber(vatNumber).subscribe({
+          next: (data) => {
+            this.filteredRepairs = data;
+            this.isLoading = false;
+            this.updatePagination();
+          },
+          error: (error) => {
+            if (error.status === 404) {
+              this.isLoading = false;
+              this.updatePagination();
+            }
+          },
         });
       } else {
         this.isLoading = false;
@@ -72,4 +90,6 @@ export class SearchResultsPageComponent implements OnInit {
   get totalPagesList(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
+
+  
 }

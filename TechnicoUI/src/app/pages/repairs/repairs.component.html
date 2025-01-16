@@ -1,22 +1,26 @@
-<div class="container-repairsPage">
+<div class="container-repairs">
   <h2>Pending Repairs</h2>
   <div class="search-section">
     <form (ngSubmit)="searchRepairs()">
-      <label for="startDate">Start Date:</label>
-      <input
-        type="date"
-        id="startDate"
-        [(ngModel)]="searchCriteria.startDate"
-        name="startDate"
-      />
-      <label for="userId">User ID:</label>
-      <input
-        type="text"
-        id="userId"
-        placeholder="Search by User ID"
-        [(ngModel)]="searchCriteria.userId"
-        name="userId"
-      />
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input
+          type="date"
+          id="startDate"
+          [(ngModel)]="searchCriteria.startDate"
+          name="startDate"
+        />
+      </div>
+      <div class="form-group">
+        <label for="userId">VAT Number:</label>
+        <input
+          type="text"
+          id="userId"
+          placeholder="Search by VAT Number"
+          [(ngModel)]="searchCriteria.vatNumber"
+          name="userId"
+        />
+      </div>
       <button type="submit">Search</button>
       <a
         routerLink="/admin-homepage/create-repair-page"
@@ -26,69 +30,129 @@
       </a>
     </form>
   </div>
+  <div *ngFor="let repair of paginatedRepairs" class="repair-card">
+    <div class="repair-info">
+      <div class="repair-header">
+        <div class="repair-identifiers">
+          <div class="identifier-item">
+            <i class="fas fa-hashtag"></i>
+            <span class="identifier-label">Property ID:</span>
+            <span class="identifier-value">{{
+              repair.propertyItemDto.propertyIdentificationNumber
+            }}</span>
+          </div>
+          <div class="identifier-item">
+            <i class="fas fa-user"></i>
+            <span class="identifier-label">Property Owner VAT:</span>
+            <span class="identifier-value">{{
+              repair.propertyItemDto.propertyOwnerVatNumber
+            }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="repair-details">
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Type Of Property</span>
+            <span class="detail-value">{{ repair.repairType }}</span>
+          </div>
+        </div>
 
-  <div *ngIf="paginatedRepairs.length > 0">
-    <div *ngFor="let repair of paginatedRepairs" class="repair-card">
-      <div class="repair-info">
-        <h3>{{ repair.title }}</h3>
-        <p>Date: {{ repair.date }}</p>
-        <p>Location: {{ repair.location }}</p>
-        <p>Cost: ${{ repair.cost }}</p>
-        <p>Owner: {{ repair.owner }}</p>
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">{{ repair.address }}</span>
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Year Of Construction</span>
+            <span class="detail-value">{{
+              repair.propertyItemDto.yearOfConstruction
+            }}</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Cost</span>
+            <span class="detail-value">{{ repair.cost }}</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Time</span>
+            <span class="detail-value">{{ repair.dateTime }}</span>
+          </div>
+        </div>
       </div>
-      <div class="repair-description">
-        <p>{{ repair.description }}</p>
-      </div>
-      <button class="accept-button"
+    </div>
+    <div class="repair-description">
+      <textarea readonly w-75>{{ repair.description }}</textarea>
+    </div>
+    <div class="repair-actions">
+      <button
         *ngIf="repair.status === 'pending'"
-        class="repair-button"
-        (click)="updateRepairStatus(repair, 'scheduled')"
+        class="accept-button"
+        (click)="updateRepairStatus(repair, 'in progress')"
       >
         Accept
       </button>
-      <button class="decline-button"
+      <button
         *ngIf="repair.status === 'pending'"
-        class="repair-button"
+        class="decline-button"
         (click)="updateRepairStatus(repair, 'declined')"
       >
         Decline
       </button>
       <button
-        *ngIf="repair.status === 'scheduled'"
-        class="repair-button"
-        [ngClass]="{ scheduled: repair.status === 'scheduled' }"
+        *ngIf="repair.status === 'in progress'"
+        class="repair-button in-progress"
       >
         {{ repair.status }}
       </button>
       <button
         *ngIf="repair.status === 'declined'"
-        class="repair-button"
-        [ngClass]="{ declined: repair.status === 'declined' }"
+        class="repair-button declined"
       >
         {{ repair.status }}
       </button>
     </div>
-
-    <div class="pagination">
-      <button
-        (click)="changePage(currentPage - 1)"
-        [disabled]="currentPage === 1"
-      >
-        Previous
-      </button>
-      <button
-        *ngFor="let page of totalPagesList"
-        (click)="changePage(page)"
-        [class.active]="currentPage === page"
-      >
-        {{ page }}
-      </button>
-      <button
-        (click)="changePage(currentPage + 1)"
-        [disabled]="currentPage === totalPages"
-      >
-        Next
-      </button>
-    </div>
+  </div>
+  <div class="pagination">
+    <button
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <button
+      *ngFor="let page of totalPagesList"
+      (click)="changePage(page)"
+      [class.active]="currentPage === page"
+    >
+      {{ page }}
+    </button>
+    <button
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
   </div>
 </div>

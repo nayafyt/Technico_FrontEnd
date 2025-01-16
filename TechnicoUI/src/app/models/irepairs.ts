@@ -1,13 +1,29 @@
 export interface IRepairs {
-    date: string;
-    repairType: string;
-    description: string;
+  id?:number
+  dateTime: string;
+  repairType: string;
+  description?: string;
+  address: string;
+  status: string;
+  cost: number;
+  propertyItemDto: {
+    propertyIdentificationNumber: string;
     address: string;
-    status: 'in progress' | 'scheduled' | 'completed' | 'pending' | 'declined';
-    cost: number;
-    owner: string;
-    imageUrl?: string;
-    title: string;
-    location: string;
-    userId: string;
+    yearOfConstruction: number;
+    propertyType: string;
+    propertyOwnerVatNumber: string;
+    propertyRepairDtos: [];
+  };
+}
+
+export interface ApiResponse {
+  value: IRepairs;
+  statusCode: number;
+  description: string;
+}
+
+export interface ApiResponse2 {
+  value: IRepairs[];
+  statusCode: number;
+  description: string;
 }

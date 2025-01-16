@@ -7,6 +7,7 @@
         <label for="vat">Vat Number</label>
         <input type="text" id="vat"
         class="form-control"
+        readonly
          formControlName="vatNumber" required />
       </div>
       <div class="form-group"
@@ -59,12 +60,12 @@
          formControlName="password" required />
       </div>
       <div class="form-group"
-      [class.has-error]="form.get('typeOfUser')?.invalid&&form.get('typeOfUser')?.touched">
-        <label for="typeOfUser">Type of User:</label>
-        <select id="typeOfUser" 
+      [class.has-error]="form.get('userType')?.invalid&&form.get('userType')?.touched">
+        <label for="userType">Type of User:</label>
+        <select id="userType" 
         class="form-control"
-        formControlName="typeOfUser" required>
-          <option *ngFor="let type of typesOfUser" [value]="type">{{type}}</option>
+        formControlName="userType" required>
+          <option *ngFor="let type of userType" [value]="type.value" [label]="type.label">{{type}}</option>
         </select>
       </div>
   

@@ -11,16 +11,11 @@ import { SearchResultsPageComponent } from './pages/search-results-page/search-r
 import { CreateOwnerComponent } from './pages/create-owner/create-owner.component';
 import { EditOwnerPageComponent } from './pages/edit-owner-page/edit-owner-page.component';
 import { UserSearchPageComponent } from './pages/user-search-page/user-search-page.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { SignupComponent } from './pages/signup/signup.component';
-import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { OwnerDetailsPageComponent } from './pages/owner-details-page/owner-details-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password/:token', component: ResetPasswordComponent },
   {
     path: 'admin-homepage',
     component: AdminHomepageComponent,
@@ -34,6 +29,7 @@ export const routes: Routes = [
       { path: 'owner-management', component: OwnerPageComponent },
       { path: 'owner-management/create-owner-page', component: CreateOwnerComponent },
       { path: 'owner-management/edit-owner-page/:vat', component: EditOwnerPageComponent },
+      { path: 'owner-management/owner-details-page/:vat', component: OwnerDetailsPageComponent },
       { path: 'owner-management/user-search-page', component: UserSearchPageComponent },
     ],
   },

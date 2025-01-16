@@ -1,0 +1,44 @@
+<div *ngIf="owner" class="owner-container">
+
+    <div class="owner-header">
+        <h2>{{ owner?.name }} {{ owner?.surname }}</h2>
+        <p><strong>VAT Number:</strong> {{ owner?.vatNumber }}</p>
+    </div>
+
+    <div class="property-items-section">
+        <h3>Property Items</h3>
+        <ul class="property-list">
+            @if(owner.propertyItems.length != 0) {
+            <li *ngFor="let item of owner.propertyItems">
+                <strong>ID:</strong> {{ item.propertyIdentificationNumber }} <br />
+                <strong>Address:</strong> {{ item.address }} <br />
+                <strong>Type:</strong> {{getpropertyTypes(item.propertyType) }} <br />
+                <strong>Year:</strong> {{ item.yearOfConstruction }}
+            </li>
+            }@else {
+            <li>No property items found</li>
+            }
+
+        </ul>
+    </div>
+
+    <div class="property-repairs-section">
+        <h3>Property Repairs</h3>
+        <ul class="repair-list">
+            @if (owner.propertyRepairs.length === 0) {
+            <li>No repairs found</li>
+            }@else {
+            <li *ngFor="let repair of owner.propertyRepairs">
+                <strong>Date:</strong> {{ repair.dateTime | date }} <br />
+                <strong>Type:</strong> {{getrepairTypes(repair.repairType) }} <br />
+                <strong>Description:</strong> {{ repair.description }} <br />
+                <strong>Cost:</strong> {{ repair.cost }} <br />
+            </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<div *ngIf="!owner" class="loading-message">
+    <p>Loading owner details...</p>
+</div>

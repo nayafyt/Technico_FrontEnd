@@ -1,7 +1,7 @@
 <div class="container-searchPage">
   <h2>Search User</h2>
   <div class="search-section">
-    <form >
+    <form>
       <label for="vat">VAT:</label>
       <input
         type="text"
@@ -21,26 +21,82 @@
       <button type="submit" (click)="searchOwners()">Search</button>
     </form>
   </div>
+
   <div class="noRepairs" *ngIf="!isLoading && filteredPropertyOwner.length === 0">
     <p>No User found matching the criteria.</p>
   </div>
+
   <div class="owner-container">
-    <div class="outer-owner-card" *ngIf="!isLoading && filteredPropertyOwner.length > 0">
-      <div
-        *ngFor="let propertyOwner of filteredPropertyOwner"
-        class="owner-card"
-      >
-        <div class="owner-info">
-          <h3>Vat: {{ propertyOwner.vatNumber }}</h3>
-          <p>Name: {{ propertyOwner.name }}</p>
-          <p>Surname: {{ propertyOwner.surname }}</p>
-          <p>Address: {{ propertyOwner.address }}</p>
-          <p>Phone Number: {{ propertyOwner.phoneNumber }}</p>
-          <p>Email: {{ propertyOwner.email }}</p>
+    <div *ngFor="let propertyOwner of filteredPropertyOwner" class="owner-card">
+      <div class="owner-header">
+        <div class="owner-identifiers">
+          <div class="identifier-item">
+            <i class="fas fa-hashtag"></i>
+            <span class="identifier-label">Vat:</span>
+            <span class="identifier-value">{{ propertyOwner.vatNumber }}</span>
+          </div>
         </div>
-      <a [routerLink]="['/admin-homepage/owner-management/edit-owner-page', propertyOwner.vatNumber]" class="editbtn">Edit</a>
-     <!-- <button class="deletebtn" type="submit" (click)="deletePropertyOwners()">Delete Owner</button> -->
-    </div>
+        <div class="button-container">
+          <a
+            [routerLink]="['/admin-homepage/owner-management/owner-details-page', propertyOwner.vatNumber]"
+            class="infobtn"
+          >
+            <i class="fas fa-user"></i>
+          </a>
+          <a
+            [routerLink]="['/admin-homepage/owner-management/edit-owner-page', propertyOwner.vatNumber]"
+            class="editbtn"
+          >
+            Edit
+          </a>
+        </div>
+      </div>
+
+      <div class="owner-details">
+        <div class="details-column">
+          <div class="detail-item">
+            <div class="detail-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">Fullname</span>
+              <span class="detail-value">{{ propertyOwner.name }} {{ propertyOwner.surname }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-icon">
+              <i class="fas fa-location-dot"></i>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">Address</span>
+              <span class="detail-value">{{ propertyOwner.address }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-column">
+          <div class="detail-item">
+            <div class="detail-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">Phone</span>
+              <span class="detail-value">{{ propertyOwner.phoneNumber }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">Email</span>
+              <span class="detail-value">{{ propertyOwner.email }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 </div>
