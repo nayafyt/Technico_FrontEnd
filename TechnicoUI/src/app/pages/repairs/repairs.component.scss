@@ -43,53 +43,105 @@
       }
 
       button {
-        padding: 10px 20px;
+        padding: 0.5rem 1.5rem;
         font-size: 1rem;
-        background-color: #f55701;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
+        color: #f55701;
+        background-color: #f8f9fa;
+        border: 1px solid #f55701;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s, color 0.2s;
+        display: inline-block;
+        text-decoration: none;
+        margin-top: 3px;
+        margin-left: 13px;
+        &:hover {
+          transform: scale(1);
+           background-color: #f55701;
+          color: #ffffff;
+            opacity: 1;
+        }
+      
+        &:active {
+          transform: scale(0.95);
+        }
       }
     }
+  }
+
+  .repair-header {
+    border-bottom: 1px solid #f55701;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    
+  }
+  
+  .repair-identifiers {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+   
+  }
+  
+  .identifier-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    
+  }
+  
+  .identifier-item i, 
+  .identifier-item mat-icon { 
+    color: #f55701;
+    font-size: 1.3rem;
+  }
+  
+  .identifier-label {
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .identifier-value {
+    font-weight: 600;
   }
 
   .create-repair-button {
     padding: 0.5rem 1.5rem;
     font-size: 1rem;
-    color: #007bff;
+    color: #f55701;
     background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
+    border: 1px solid #f55701;
     border-radius: 4px;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s, color 0.2s;
-    text-align: center;
     display: inline-block;
     text-decoration: none;
-
+    margin-top: 3px;
+    margin-left: 13px;
     &:hover {
-      background-color: #e2e6ea;
-      color: #0056b3;
-      transform: scale(1.05);
+      transform: scale(1);
+       background-color: #f55701;
+      color: #ffffff;
+        opacity: 1;
     }
-
+  
     &:active {
       transform: scale(0.95);
     }
   }
 
   .repair-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f7f7f7;
     border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 1000px;
-    margin: 10px 0;
-
+    background: #f7f7f7;
+    border-radius: 8px;
+    margin: 20px auto;
+    padding: 1.5rem;
+    min-height: 200px;
+    font-size: 1rem;
     .repair-info,
     .repair-actions {
       display: flex;
@@ -109,16 +161,6 @@
       p {
         margin: 7px 0;
       }
-    }
-
-    .repair-description {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 15px;
-      flex: 1;
-      margin-right: 250px;
     }
     
 
@@ -162,6 +204,70 @@
         }
       }
     }
+    .repair-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-left: 5%;
+    }
+    
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .detail-icon {
+      background: #f0eeee;
+      padding: 0.8rem;
+      border-radius: 50%;
+      color: #f55701;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .detail-content {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.1rem;
+    }
+    
+    .detail-label {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .detail-value {
+      font-weight: 500;
+    }
+  }
+  .repair-description {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 30px;
+    margin-top: 30px;
+  }
+  
+  .repair-description textarea {
+    width: 80%;
+    max-width: 800px;
+    min-width: 300px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    resize: none;
+    text-align: center;
+    border: 0.9px solid #f55701;
+    outline: none;
+    background: transparent;
+    cursor: default;
   }
 
   .pagination {
