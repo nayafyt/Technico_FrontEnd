@@ -32,16 +32,78 @@
   </div>
   <div *ngFor="let repair of paginatedRepairs" class="repair-card">
     <div class="repair-info">
-      <h3>{{ repair.repairType }}</h3>
-      <p>Address: {{ repair.address }}</p>
-      <p>Date: {{ repair.dateTime }}</p>
-      <p>Cost: {{ repair.cost }}</p>
-      <!-- <p>Property Identification Number: {{ repair.propertyItemDto.propertyIdentificationNumber }}</p>
-      <p>Property Owner Vat Number: ${{ repair.propertyItemDto.propertyOwnerVatNumber }}</p>
-      <p>Year Of Construction: {{ repair.propertyItemDto.yearOfConstruction }}</p> -->
+      <div class="repair-header">
+        <div class="repair-identifiers">
+          <div class="identifier-item">
+            <i class="fas fa-hashtag"></i>
+            <span class="identifier-label">Property ID:</span>
+            <span class="identifier-value">{{
+              repair.propertyItemDto.propertyIdentificationNumber
+            }}</span>
+          </div>
+          <div class="identifier-item">
+            <i class="fas fa-user"></i>
+            <span class="identifier-label">Property Owner VAT:</span>
+            <span class="identifier-value">{{
+              repair.propertyItemDto.propertyOwnerVatNumber
+            }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="repair-details">
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Type Of Property</span>
+            <span class="detail-value">{{ repair.repairType }}</span>
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">{{ repair.address }}</span>
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Year Of Construction</span>
+            <span class="detail-value">{{
+              repair.propertyItemDto.yearOfConstruction
+            }}</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Cost</span>
+            <span class="detail-value">{{ repair.cost }}</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Time</span>
+            <span class="detail-value">{{ repair.dateTime }}</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="repair-description">
-      <p>{{ repair.description }}</p>
+      <textarea readonly w-75>{{ repair.description }}</textarea>
     </div>
     <div class="repair-actions">
       <button

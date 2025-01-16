@@ -10,7 +10,7 @@ import {
   stringToStatusType,
   stringToPropertyType,
 } from '../utils/enum-utils';
-import { RepairType, StatusType, PropertyType, typeOfUser  } from '../enums/enums';
+import { RepairType, StatusType, PropertyType } from '../enums/enums';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +25,7 @@ export class RepairsService {
       map((response) =>
         response.value.map((repair) => ({
           ...repair,
+          dateTime: repair.dateTime.split('T')[0],
           status: statusTypeToString(repair.status as unknown as StatusType),
           repairType: repairTypeToString(
             repair.repairType as unknown as RepairType
@@ -48,6 +49,7 @@ export class RepairsService {
         map((response) =>
           response.value.map((repair) => ({
             ...repair,
+            dateTime: repair.dateTime.split('T')[0],
             status: statusTypeToString(repair.status as unknown as StatusType),
             repairType: repairTypeToString(
               repair.repairType as unknown as RepairType
@@ -71,6 +73,7 @@ export class RepairsService {
         map((response) =>
           response.value.map((repair) => ({
             ...repair,
+            dateTime: repair.dateTime.split('T')[0],
             status: statusTypeToString(repair.status as unknown as StatusType),
             repairType: repairTypeToString(
               repair.repairType as unknown as RepairType
@@ -98,6 +101,7 @@ export class RepairsService {
     return this.http.post<ApiResponse>(this.apiUrl, repairToSend).pipe(
       map((response: any) => ({
         ...response,
+        dateTime: repair.dateTime.split('T')[0],
         // status: statusTypeToString(response.status),
         // repairType: repairTypeToString(response.repairType),
         // propertyItemDto: {

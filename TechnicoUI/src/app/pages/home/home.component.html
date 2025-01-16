@@ -2,8 +2,8 @@
   <div class="admin-container">
     <h1>Welcome, Admin!</h1>
     <p>
-      Manage repairs and properties efficiently with our user-friendly platform.
-      <br />View, edit, and monitor repairs seamlessly.
+      Here you can check the progress of the repairs <br />
+      Manage repairs and properties efficiently
     </p>
   </div>
   <div class="image-container">
@@ -14,17 +14,48 @@
 <div class="container-repairs">
   <h2>Ongoing Repairs</h2>
   <div *ngFor="let repair of paginatedRepairs" class="repair-card">
-    <!-- Repair Header -->
-    <div class="repair-header">
-      <div class="identifier-item">
-        <i class="fas fa-tools"></i>
-        <span class="identifier-label">Repair Type:</span>
-        <span class="identifier-value">{{ repair.repairType }}</span>
+    <div class="repair-info">
+      <div class="repair-header">
+        <div class="repair-identifiers">
+          <div class="detail-item">
+            <div class="detail-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">Type Of Property</span>
+              <span class="detail-value">{{ repair.repairType }}</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">Time</span>
+              <span class="detail-value">{{ repair.dateTime }}</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">Address</span>
+              <span class="detail-value">{{ repair.address }}</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">Cost</span>
+              <span class="detail-value">{{ repair.cost }}</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="identifier-item">
-        <i class="fas fa-calendar-alt"></i>
-        <span class="identifier-label">Date:</span>
-        <span class="identifier-value">{{ repair.dateTime }}</span>
+      <div class="repair-details">
       </div>
     </div>
 
@@ -44,20 +75,19 @@
 
     <!-- Repair Description -->
     <div class="repair-description">
-      <p>{{ repair.description }}</p>
+      <textarea readonly w-75>{{ repair.description }}</textarea>
     </div>
-
-    <!-- Status Button -->
-    <button
-      class="repair-button"
-      [ngClass]="{ 'in-progress': repair.status === 'in progress' }"
-    >
-      {{ repair.status }}
-    </button>
+    <div class="repair-actions">
+      <button
+        class="repair-button"
+        [ngClass]="{
+          'in-progress': repair.status === 'in progress'
+        }"
+      >
+        {{ repair.status }}
+      </button>
+    </div>
   </div>
-</div>
-
-  
   <div class="pagination">
     <button
       (click)="changePage(currentPage - 1)"
