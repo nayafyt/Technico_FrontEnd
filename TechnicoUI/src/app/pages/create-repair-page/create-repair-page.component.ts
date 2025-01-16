@@ -33,6 +33,7 @@ export class CreateRepairPageComponent implements OnInit {
     { label: 'Frames', value: 2 },
     { label: 'Plumbing', value: 3 },
     { label: 'Electrical Work', value: 4 },
+
   ];
 
   constructor(
