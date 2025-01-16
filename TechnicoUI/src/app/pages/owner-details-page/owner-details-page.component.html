@@ -12,7 +12,7 @@
             <li *ngFor="let item of owner.propertyItems">
                 <strong>ID:</strong> {{ item.propertyIdentificationNumber }} <br />
                 <strong>Address:</strong> {{ item.address }} <br />
-                <strong>Type:</strong> {{ item.propertyType }} <br />
+                <strong>Type:</strong> {{getpropertyTypes(item.propertyType) }} <br />
                 <strong>Year:</strong> {{ item.yearOfConstruction }}
             </li>
             }@else {
@@ -30,9 +30,8 @@
             }@else {
             <li *ngFor="let repair of owner.propertyRepairs">
                 <strong>Date:</strong> {{ repair.dateTime | date }} <br />
-                <strong>Type:</strong> {{ repair.repairType }} <br />
+                <strong>Type:</strong> {{getrepairTypes(repair.repairType) }} <br />
                 <strong>Description:</strong> {{ repair.description }} <br />
-                <strong>Status:</strong> {{ repair.status }} <br />
                 <strong>Cost:</strong> {{ repair.cost }} <br />
             </li>
             }

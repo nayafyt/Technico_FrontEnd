@@ -28,9 +28,9 @@ export class CreateOwnerComponent implements OnInit {
   ) {
     this.form = this.fb.group({
      vatNumber: ['', [Validators.required, Validators.pattern('[0-9A-Za-z]{1,10}')]],
-      name: ['', [Validators.required,Validators.pattern('^[a-z]+$')]],
-      surname: ['', [Validators.required,Validators.pattern('^[a-z]+$')]],
-      address: ['', [Validators.required,Validators.pattern('^[a-z0-9\s]+$')]],
+      name: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+      surname: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+      address: ['', [Validators.required,Validators.pattern('^[a-zA-Z0-9\s]+$')]],
       phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],

@@ -38,8 +38,7 @@ h2 {
 
 .repair-card {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   background-color: #f7f7f7;
   border: 1px solid #dee2e6;
   border-radius: 8px;
@@ -47,36 +46,74 @@ h2 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 1000px;
+  min-height: 200px;
+  font-size: 1rem;
   margin: 10px 0;
 }
 
-.repair-info h3 {
-  font-size: 1.25rem;
-  margin-bottom: 5px;
-  font-weight: bold;
+.repair-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #f55701;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
 }
 
-.repair-info p {
-  margin: 7px 0;
+.repair-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  
+  p {
+    margin: 0.5rem 0;
+  }
+}
+.repair-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 15px;
+  flex: 1;
+  margin-right: 250px;
 }
 
 .repair-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  border: none;
-  border-radius: 5px;
-  color: white;
+  padding: 3px 12px;
+  font-size: 1rem;
+  border: 1.5px solid #f55701;
+  border-radius: 7px;
+  color: #f55701;
   transition: background-color 0.3s ease;
-  cursor: default;
-}
+  background-color: transparent;
+  margin-left: auto;
+  margin-top: -30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  cursor: pointer;
 
-.repair-button.in-progress {
-  background-color: #ff9800;
-}
+  &:hover:not(.in-progress) {
+    transform: scale(1.1);
+    background-color: #f55701;
+    color: #ffffff;
+    opacity: 1;
+  }
 
-// .repair-button:hover {
-//   opacity: 0.8;
-// }
+  &.in-progress {
+    background-color: #f55701;
+    color: #ffffff;
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+}
 
 .pagination {
   display: flex;
@@ -98,4 +135,84 @@ h2 {
 .pagination button.active {
   background-color: #f55701;
   color: #fff;
+}
+
+.property-header {
+  border-bottom: 1px solid #f55701;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.property-identifiers {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.identifier-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  
+  i {
+    color: #f55701;
+    font-size: 1.3rem;
+  }
+}
+
+.identifier-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.identifier-value {
+  font-weight: 600;
+}
+
+.property-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-left: 5%;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.detail-icon {
+  background: #f0eeee;
+  padding: 0.8rem;
+  border-radius: 50%;
+  color: #f55701;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+}
+
+.detail-label {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.detail-value {
+  font-weight: 500;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 1rem;
 }

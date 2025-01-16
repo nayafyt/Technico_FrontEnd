@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyOwnerService } from '../../../services/property-owner.service';
+import { concatWith } from 'rxjs';
 
 @Component({
   selector: 'app-owner-details-page',
@@ -12,6 +13,26 @@ import { PropertyOwnerService } from '../../../services/property-owner.service';
 export class OwnerDetailsPageComponent implements OnInit {
   vatNumber: string | null = null; // VAT number from the route
   owner: any = null; // Object to hold the owner's details
+  propertyType  = [
+    {label: 'Detached house', value: 0},
+    {label: 'Maisonet', value: 1},
+    {label: 'Apartment', value: 2}
+   ];
+
+   repairType = [
+    { label: 'Painting', value: 0 },
+    { label: 'Insulation', value: 1 },
+    { label: 'Frames', value: 2 },
+    { label: 'Plumbing', value: 3 },
+    { label: 'Electrical Work', value: 4 }
+  ];
+
+  statusType = [
+    { label: 'Pending', value: 0 },
+    { label: 'InProgress', value: 1 },
+    { label: 'Completed', value: 2}, 
+    { label: 'Declined', value: 3}, 
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -19,6 +40,7 @@ export class OwnerDetailsPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     // Use paramMap Observable to fetch VAT number
     this.route.paramMap.subscribe((params) => {
       this.vatNumber = params.get('vat');
@@ -47,4 +69,17 @@ export class OwnerDetailsPageComponent implements OnInit {
       }
     );
   }
+  getpropertyTypes(type: string): string { 
+    const numericType = Number(type); 
+    const foundType = this.propertyType.find(pt => pt.value === numericType);
+     return foundType ? foundType.label : 'Unknown';
+   } 
+   getrepairTypes(type: string): string { 
+    console.log('Repair Type: ', type);
+    const numericType = Number(type); 
+    console.log('Converted Numeric Type: ', numericType);
+    const foundType = this.repairType.find(rt => rt.value === numericType);
+    console.log('Found Type: ', foundType);
+     return foundType ? foundType.label : 'Unknown';
+   } 
 }
