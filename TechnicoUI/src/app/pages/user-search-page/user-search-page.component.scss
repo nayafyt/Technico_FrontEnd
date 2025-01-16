@@ -75,67 +75,193 @@
     }
 }
 
+
 .owner-container{
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    margin: 12px 0; 
-  }
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  margin: 12px 0; 
+  
+}
+.owner-card {
+  background: #f7f7f7;
+  border-radius: 8px;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 200px;
+  font-size: 1.1rem;
+}
+.owner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #f55701;
+  padding-bottom: 1.4rem;
+  margin-bottom: 1rem;
+}
+.owner-identifiers {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.identifier-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 
-  .outer-owner-card{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  i, mat-icon { 
+    color: #f55701;
+    font-size: 1.3rem;
+  }
+}
+.identifier-label {
+  color: #666;
+  font-weight: 500;
+}
+.identifier-value {
+  font-weight: 600;
+}
+.owner-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-left: 5%;
+}
+
+.details-column {
+  flex: 1;
+  margin: 0 10px;
+  
+}
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 4%;
+  
+}
+.detail-icon {
+  background: #f5f5f5;
+  padding: 0.8rem;
+  border-radius: 50%;
+  color: #f55701;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+}
+.detail-label {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
     width: 100%;
-    max-width: 1000px;
-  }
+  max-width: 1000px;
+  
+}
+.detail-value {
+  font-weight: 500;
+  
+}
+.button-container {
+margin-left: auto;
+display: flex;
+justify-content: flex-start;
+margin-top: 3px;
+gap: 10px;
 
-  .owner-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f7f7f7;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(177, 65, 0, 0.1);
-    width: 100%;
-    max-width: 1000px;
-    margin: 10px 0;
-  }
-  .owner-info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding-right: 20px; 
-  }
-  .owner-info h3 {
-    font-size: 1.25rem;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  .owner-info p {
-    margin: 5px 0;
-    font-size: 0.9rem;
-  }
+.editbtn {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  color: #f55701;
+  background-color: #f8f9fa;
+  border: 1px solid #f55701;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+  display: inline-block;
+  text-decoration: none;
+  margin: 0px;
 
-  .editbtn {
-    padding: 0.5rem 1rem;
-    color: #fff;
+  &:hover {
+    transform: scale(1);
     background-color: #f55701;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s, transform 0.2s;
-    margin: 0 15px;
+    color: #ffffff;
+    opacity: 1;
   }
-  
-  .editbtn:hover {
-    background-color: #d94d00;
-    transform: scale(1.05);
-  }
-  
-  .editbtn:active {
+
+  &:active {
     transform: scale(0.95);
   }
+}
+
+.infobtn {
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #f55701;
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  margin: 0;
+}
+
+.infobtn i {
+  font-size: 1.2rem;
+  color: #f55701;
+}
+
+.infobtn:hover {
+  transform: scale(1);
+  background-color: #f55701;
+  border-radius: 50%;
+  color: #ffffff;
+}
+
+.infobtn:hover i {
+  color: #ffffff;
+}
+
+.infobtn:active {
+  transform: scale(0.95);
+}
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+li {
+  list-style: none;
+  margin: 0 5px;
+}
+
+.pagination a {
+  padding: 8px 12px;
+  border: 1px solid #f55701;
+  border-radius: 4px;
+  color: #f55701;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover,
+.pagination a.active {
+  background-color: #f55701;
+  color: #fff;
+}
