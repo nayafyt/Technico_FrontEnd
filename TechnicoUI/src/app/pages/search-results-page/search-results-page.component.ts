@@ -90,4 +90,6 @@ export class SearchResultsPageComponent implements OnInit {
   get totalPagesList(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
+
+  
 }
